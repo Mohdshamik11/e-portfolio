@@ -40,4 +40,9 @@ export function createAdminClient() {
   });
 }
 
-export const PROJECT_IMAGES_BUCKET = "project-images";
+/**
+ * Supabase Storage bucket for project screenshots. Override with the
+ * SUPABASE_STORAGE_BUCKET env var if your bucket has a different name.
+ */
+export const PROJECT_IMAGES_BUCKET =
+  process.env.SUPABASE_STORAGE_BUCKET || "project-images";
