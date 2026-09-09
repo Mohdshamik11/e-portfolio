@@ -3,21 +3,20 @@ import { Corners } from "./Corners";
 
 const mono = "ui-monospace, monospace";
 
-/** Banner hero: wide placeholder image, an overlapping headshot block, and
- *  the name / tagline / actions column. */
+/** LinkedIn-style hero: a wide cover banner with a circular headshot
+ *  overlapping its lower-left, then the name / tagline / actions column. */
 export function Hero() {
   return (
     <section style={{ padding: "40px 0 0" }}>
+      {/* Cover banner — shown at the image's true 4:1 proportions. */}
       <div
-        className="blueprint duotone"
         style={{
           position: "relative",
-          height: 300,
+          aspectRatio: "1584 / 396",
+          borderRadius: 8,
+          overflow: "hidden",
+          border: "1px solid var(--color-divider)",
           background: "var(--om-field)",
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "flex-end",
-          padding: 16,
         }}
       >
         {profile.bannerUrl ? (
@@ -34,52 +33,53 @@ export function Hero() {
             }}
           />
         ) : (
-          <>
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "repeating-linear-gradient(135deg, color-mix(in srgb, #f2f2f3 14%, transparent) 0 7px, transparent 7px 15px)",
-              }}
-            />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "flex-end",
+              justifyContent: "flex-end",
+              padding: 16,
+              background:
+                "repeating-linear-gradient(135deg, color-mix(in srgb, #f2f2f3 14%, transparent) 0 7px, transparent 7px 15px)",
+            }}
+          >
             <span
               style={{
-                position: "relative",
                 fontFamily: mono,
                 fontSize: 11,
                 letterSpacing: "0.08em",
                 color: "color-mix(in srgb, #f2f2f3 75%, transparent)",
               }}
             >
-              banner image — 2400×700 · workspace / code / server rack
+              banner image — 1584×396
             </span>
-          </>
+          </div>
         )}
-        <Corners />
       </div>
 
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "20px 32px",
+          gap: "8px 32px",
           alignItems: "flex-start",
-          marginTop: -60,
           padding: "0 8px",
         }}
       >
+        {/* Circular headshot — only this pulls up to overlap the banner. */}
         <div
-          className="blueprint duotone"
           style={{
-            flex: "0 1 180px",
-            height: 200,
+            position: "relative",
+            width: 156,
+            height: 156,
+            flex: "none",
+            marginTop: -56,
+            borderRadius: "50%",
+            overflow: "hidden",
+            border: "4px solid var(--color-bg)",
             background: "var(--color-accent-200)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: "center",
-            padding: 10,
           }}
         >
           {profile.headshotUrl ? (
@@ -93,39 +93,28 @@ export function Hero() {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                objectPosition: "center top",
+                objectPosition: "center 12%",
               }}
             />
           ) : (
-            <>
-              <div
-                data-hatch=""
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "repeating-linear-gradient(135deg, color-mix(in srgb, #1d1f20 12%, transparent) 0 6px, transparent 6px 13px)",
-                }}
-              />
-              <span
-                style={{
-                  position: "relative",
-                  fontFamily: mono,
-                  fontSize: 10,
-                  lineHeight: 1.5,
-                  color: "var(--color-accent-900)",
-                }}
-              >
-                headshot
-                <br />
-                800×1000
-              </span>
-            </>
+            <span
+              style={{
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: mono,
+                fontSize: 10,
+                color: "var(--color-accent-900)",
+              }}
+            >
+              headshot
+            </span>
           )}
-          <Corners />
         </div>
 
-        <div style={{ flex: "1 1 min(100%, 320px)", minWidth: 0, paddingTop: 72 }}>
+        <div style={{ flex: "1 1 min(100%, 320px)", minWidth: 0, paddingTop: 16 }}>
           {profile.openToWork && (
             <div
               className="blueprint"
