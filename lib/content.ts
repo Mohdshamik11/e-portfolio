@@ -12,10 +12,10 @@ export const profile = {
   name: "Mohamed Shamik",
   kicker: "SINGAPORE INSTITUTE OF TECHNOLOGY · SOFTWARE ENGINEER",
   tagline:
-    "Undergraduate engineer building with AI/ML, deep learning and cloud — from training CNNs to shipping the full stack around them.",
+    "I'm a Software Engineer who builds end-to-end systems. From architecting data pipelines and training deep-learning models to crafting seamless, AI-driven user experiences, I solve complex problems across the entire stack.",
   openToWork: true,
   openToWorkText:
-    "Open to work — internships & graduate roles from May 2027",
+    "Open to work — internships & graduate roles",
   /** Drop the file at public/resume.pdf for this link to resolve. */
   resumeUrl: "/resume.pdf",
 
@@ -45,10 +45,8 @@ export const ticker = [
   "Docker",
   "React",
   "FastAPI",
-  "PostgreSQL",
+  "SQL",
   "Python",
-  "TypeScript",
-  "Linux",
   "Git",
   "Streamlit",
   "OpenCV",
@@ -61,28 +59,20 @@ export const aboutParagraphs = [
 ];
 
 export const skillGroups = [
-  { name: "Programming", items: ["Python", "Java", "JavaScript", "TypeScript", "SQL"] },
+  { name: "Programming", items: ["Python", "Java", "JavaScript", "SQL"] },
   { name: "AI / ML", items: ["PyTorch", "TensorFlow", "scikit-learn", "OpenCV", "NumPy / Pandas"] },
-  { name: "Cloud", items: ["AWS", "Docker", "CI/CD", "Supabase"] },
-  { name: "Web / Full-stack", items: ["React", "Node.js", "FastAPI", "Streamlit", "PostgreSQL"] },
-  { name: "Tools / OS", items: ["Git", "Linux", "VS Code", "Jupyter", "Figma"] },
+  { name: "Cloud / DevOps", items: ["AWS", "Vercel", "GitHub Actions CI/CD", "Nginx"] },
+  { name: "Web / Full-stack", items: ["React", "Next.js", "FastAPI", "Streamlit", "SQL"] },
+  { name: "Tools / Platforms", items: ["Git", "Docker", "VS Code", "Jupyter", "SQL"] },
 ];
 
 export const experience = [
   {
-    dates: "May 2026 — Aug 2026",
+    dates: "Dec 2021 — Apr 2022",
     duration: "4 months",
-    role: "Machine Learning Engineer Intern",
+    role: "IT Support & Web Developer",
     kind: "Internship",
-    org: "Placeholder Technologies Pte Ltd · Singapore",
-    desc: "Built and evaluated an image-quality classification model, then wrapped it in an internal review tool so the ops team could triage submissions without engineering help.",
-  },
-  {
-    dates: "Jan 2026 — Apr 2026",
-    duration: "4 months",
-    role: "Software Engineering Intern",
-    kind: "Internship",
-    org: "Placeholder Cloud Systems · Singapore",
+    org: "Zicom Holdings Pte Ltd",
     desc: "Worked on a React and FastAPI service, added CI checks to the deployment pipeline, and moved batch jobs onto containerised workers.",
   },
 ];
@@ -125,10 +115,10 @@ export const education = [
   {
     current: false,
     badge: "Diploma",
-    dates: "Add later",
-    degree: "Previous qualification",
-    school: "Institution name",
-    coursework: ["Relevant module", "Relevant module"],
+    dates: "2019 - 2022",
+    degree: "Diploma In Infocomm & Security",
+    school: "Nanyang Polytechnic",
+    coursework: ["Network Designing", "Databases", "Web Development", "Data Structure & Algorithms"],
   },
 ];
 

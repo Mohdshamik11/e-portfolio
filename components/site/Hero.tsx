@@ -175,8 +175,8 @@ export function Hero() {
           </h1>
           <p
             style={{
-              fontSize: 22,
-              maxWidth: "52ch",
+              fontSize: 21,
+              maxWidth: "58ch",
               lineHeight: 1.5,
               margin: "0 0 20px",
             }}
