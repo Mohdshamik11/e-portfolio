@@ -180,7 +180,7 @@ section[id] { scroll-margin-top: 88px; }
 .blueprint {
   position: relative;
   border: 1px solid var(--color-divider);
-  border-radius: 6px;
+  border-radius: 0px;
 }
 .blueprint.halftone,
 .blueprint.plate,
