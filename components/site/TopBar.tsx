@@ -108,8 +108,7 @@ export function TopBar() {
           <a
             href="/admin/login"
             title="Site owner sign in"
-            className="btn blueprint"
-            style={{ background: "var(--color-accent)", color: "#f2f2f3" }}
+            className="btn btn-primary blueprint"
           >
             Sign in
             <Corners />

@@ -151,15 +151,16 @@ h6 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
 
 p { margin: 0 0 var(--space-3); }
 
-a {
+/* Link colours — but never for links styled as buttons (.btn sets its own). */
+a:not(.btn) {
   color: var(--color-accent-700);
   text-underline-offset: 3px;
 }
-a:hover { color: var(--color-accent); }
+a:not(.btn):hover { color: var(--color-accent); }
 
-[data-theme="dark"] a,
+[data-theme="dark"] a:not(.btn),
 [data-theme="dark"] .card-kicker { color: var(--color-accent-400); }
-[data-theme="dark"] a:hover { color: var(--color-accent-300); }
+[data-theme="dark"] a:not(.btn):hover { color: var(--color-accent-300); }
 
 img { display: block; max-width: 100%; }
 figure { margin: 0; }
@@ -243,8 +244,8 @@ section[id] { scroll-margin-top: 88px; }
 .btn svg { display: block; }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
 .btn-primary { background: var(--color-accent); color: var(--color-bg); border-color: var(--color-accent); }
-.btn-primary:hover { background: var(--color-accent-600); }
-.btn-primary:active { background: var(--color-accent-700); }
+.btn-primary:hover { background: var(--color-accent-700); border-color: var(--color-accent-700); }
+.btn-primary:active { background: var(--color-accent-800); border-color: var(--color-accent-800); }
 .btn-secondary { border-color: var(--color-divider); }
 .btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
 .btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
