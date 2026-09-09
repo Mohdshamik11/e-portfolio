@@ -93,7 +93,7 @@ export function Hero() {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                objectPosition: "center 12%",
+                objectPosition: "center 18%",
               }}
             />
           ) : (
