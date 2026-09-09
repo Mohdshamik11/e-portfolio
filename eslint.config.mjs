@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Raw Claude Design export kept only as reference for the admin screens;
+    // it is not application source and is removed once those are migrated.
+    "design-export/**",
   ]),
 ]);
 
