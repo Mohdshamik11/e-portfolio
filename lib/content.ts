@@ -18,6 +18,16 @@ export const profile = {
     "Open to work — internships & graduate roles from May 2027",
   /** Drop the file at public/resume.pdf for this link to resolve. */
   resumeUrl: "/resume.pdf",
+
+  /**
+   * Hero images. Put the files in the `public/` folder and point these at
+   * them, e.g. "/banner.jpg" and "/headshot.jpg". Leave "" to show the
+   * wireframe placeholder box instead.
+   *   - banner: wide, roughly 2400×700
+   *   - headshot: portrait, roughly 800×1000
+   */
+  bannerUrl: "",
+  headshotUrl: "",
 };
 
 export const navItems = [

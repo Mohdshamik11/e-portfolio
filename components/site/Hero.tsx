@@ -20,25 +20,42 @@ export function Hero() {
           padding: 16,
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "repeating-linear-gradient(135deg, color-mix(in srgb, #f2f2f3 14%, transparent) 0 7px, transparent 7px 15px)",
-          }}
-        />
-        <span
-          style={{
-            position: "relative",
-            fontFamily: mono,
-            fontSize: 11,
-            letterSpacing: "0.08em",
-            color: "color-mix(in srgb, #f2f2f3 75%, transparent)",
-          }}
-        >
-          banner image — 2400×700 · workspace / code / server rack
-        </span>
+        {profile.bannerUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element -- static asset in public/
+          <img
+            src={profile.bannerUrl}
+            alt=""
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+        ) : (
+          <>
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "repeating-linear-gradient(135deg, color-mix(in srgb, #f2f2f3 14%, transparent) 0 7px, transparent 7px 15px)",
+              }}
+            />
+            <span
+              style={{
+                position: "relative",
+                fontFamily: mono,
+                fontSize: 11,
+                letterSpacing: "0.08em",
+                color: "color-mix(in srgb, #f2f2f3 75%, transparent)",
+              }}
+            >
+              banner image — 2400×700 · workspace / code / server rack
+            </span>
+          </>
+        )}
         <Corners />
       </div>
 
@@ -65,28 +82,46 @@ export function Hero() {
             padding: 10,
           }}
         >
-          <div
-            data-hatch=""
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "repeating-linear-gradient(135deg, color-mix(in srgb, #1d1f20 12%, transparent) 0 6px, transparent 6px 13px)",
-            }}
-          />
-          <span
-            style={{
-              position: "relative",
-              fontFamily: mono,
-              fontSize: 10,
-              lineHeight: 1.5,
-              color: "var(--color-accent-900)",
-            }}
-          >
-            headshot
-            <br />
-            800×1000
-          </span>
+          {profile.headshotUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element -- static asset in public/
+            <img
+              src={profile.headshotUrl}
+              alt={profile.name}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center top",
+              }}
+            />
+          ) : (
+            <>
+              <div
+                data-hatch=""
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "repeating-linear-gradient(135deg, color-mix(in srgb, #1d1f20 12%, transparent) 0 6px, transparent 6px 13px)",
+                }}
+              />
+              <span
+                style={{
+                  position: "relative",
+                  fontFamily: mono,
+                  fontSize: 10,
+                  lineHeight: 1.5,
+                  color: "var(--color-accent-900)",
+                }}
+              >
+                headshot
+                <br />
+                800×1000
+              </span>
+            </>
+          )}
           <Corners />
         </div>
 
