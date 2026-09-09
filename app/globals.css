@@ -269,7 +269,7 @@ section[id] { scroll-margin-top: 88px; }
   border-color: var(--color-accent-700);
 }
 
-/* ---- Forms (used by the admin screens later) ------------------------- */
+/* ---- Forms ----------------------------------------------------------- */
 .field > label {
   display: block;
   font-size: 12px;
@@ -291,6 +291,64 @@ section[id] { scroll-margin-top: 88px; }
 .input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
 .input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
 textarea.input { min-height: 90px; resize: vertical; }
+
+/* Admin form controls, ported from the admin design export. */
+.om-in {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-body);
+  font-size: 16px;
+  padding: 11px 12px;
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-divider);
+  border-radius: 0;
+}
+.om-in:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -1px;
+  border-color: var(--color-accent);
+}
+.om-in::placeholder { color: color-mix(in srgb, var(--color-text) 38%, transparent); }
+textarea.om-in { line-height: 1.55; resize: vertical; }
+
+.field-label {
+  display: block;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  margin-bottom: 7px;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+@keyframes om-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes om-shake {
+  10%, 90% { transform: translateX(-1px); }
+  30%, 70% { transform: translateX(2px); }
+  50% { transform: translateX(-2px); }
+}
+
+/* ---- Admin layout ---------------------------------------------------- */
+.login-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 100vh;
+}
+@media (max-width: 860px) {
+  .login-grid { grid-template-columns: minmax(0, 1fr); }
+  .login-panel { display: none !important; }
+}
+
+.admin-shell {
+  min-height: 100vh;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 40px) 96px;
+}
 
 /* ---- Tags -------------------------------------------------------------- */
 .tag {

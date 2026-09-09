@@ -1,25 +1,43 @@
+import "server-only";
 import { createClient } from "@supabase/supabase-js";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const publishableKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+const secretKey = process.env.SUPABASE_SECRET_KEY;
 
 /**
- * Public, read-only Supabase client.
+ * Public, read-only Supabase client (publishable key).
  *
- * Uses the publishable key, so row-level security applies: it can read the
- * `projects` table (there is a public SELECT policy) but cannot write.
- * Safe to use in server components and, if ever needed, the browser.
- *
- * Writes happen through a separate secret-key client added with the admin
- * form (build-plan step 4).
+ * Row-level security applies: it can read the `projects` table via the public
+ * SELECT policy but cannot write. Used by the homepage.
  */
 export function createPublicClient() {
   if (!url || !publishableKey) {
     throw new Error(
-      "Supabase env vars missing: set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY in .env.local",
+      "Supabase env vars missing: set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
     );
   }
   return createClient(url, publishableKey, {
     auth: { persistSession: false },
   });
 }
+
+/**
+ * Full-access Supabase client (secret key) — bypasses row-level security.
+ *
+ * Only ever call this from server-side admin code that has already checked
+ * the admin session. `import "server-only"` above makes a client-side import
+ * of this module a build error.
+ */
+export function createAdminClient() {
+  if (!url || !secretKey) {
+    throw new Error(
+      "Supabase env vars missing: set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SECRET_KEY",
+    );
+  }
+  return createClient(url, secretKey, {
+    auth: { persistSession: false },
+  });
+}
+
+export const PROJECT_IMAGES_BUCKET = "project-images";

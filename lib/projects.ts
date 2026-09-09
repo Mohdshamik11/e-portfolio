@@ -1,6 +1,8 @@
 import { createPublicClient } from "./supabase";
 import type { Project } from "./types";
 
+export { slugify } from "./slug";
+
 /** Columns selected from the `projects` table, in snake_case as stored. */
 type ProjectRow = {
   id: string;
@@ -56,5 +58,26 @@ export async function getProjects(): Promise<Project[]> {
   } catch (err) {
     console.error("getProjects:", err);
     return [];
+  }
+}
+
+/** A single project by id, or null if it doesn't exist / on error. */
+export async function getProjectById(id: string): Promise<Project | null> {
+  try {
+    const supabase = createPublicClient();
+    const { data, error } = await supabase
+      .from("projects")
+      .select(COLUMNS)
+      .eq("id", id)
+      .maybeSingle();
+
+    if (error) {
+      console.error("getProjectById: Supabase query failed:", error.message);
+      return null;
+    }
+    return data ? rowToProject(data as ProjectRow) : null;
+  } catch (err) {
+    console.error("getProjectById:", err);
+    return null;
   }
 }
