@@ -9,6 +9,10 @@ import { Skills } from "@/components/site/Skills";
 import { Ticker } from "@/components/site/Ticker";
 import { TopBar } from "@/components/site/TopBar";
 
+// Re-fetch projects from Supabase at most once a minute (ISR). The admin
+// form will also call revalidatePath("/") for an immediate refresh.
+export const revalidate = 60;
+
 export default function HomePage() {
   return (
     <div

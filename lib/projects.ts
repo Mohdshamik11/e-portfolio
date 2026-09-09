@@ -1,55 +1,60 @@
+import { createPublicClient } from "./supabase";
 import type { Project } from "./types";
 
-/**
- * TEMPORARY sample projects, mirroring the design export so the grid renders
- * with realistic content.
- *
- * Build-plan step 3 replaces the body of `getProjects()` with a Supabase
- * query against the `projects` table. Nothing else in the UI should need to
- * change: components already consume `Project[]` and handle the empty state.
- */
-const SAMPLE_PROJECTS: Project[] = [
-  {
-    id: "sample-1",
-    slug: "image-classifier-enhancer",
-    title: "Image Classifier & Enhancer",
-    description:
-      "A CNN that multi-label classifies photo defects — blur, exposure, noise, contrast — paired with a U-Net that restores the ones it flags. Wrapped in a Streamlit app you can drop an image into.",
-    techStack: ["PyTorch", "CNN", "U-Net", "Streamlit"],
-    githubUrl: "https://github.com/Mohdshamik11",
-    liveUrl: null,
-    imageUrl: null,
-    badge: "Featured",
-    dateCompleted: "2026-06-01",
-  },
-  {
-    id: "sample-2",
-    slug: "project-two",
-    title: "Project two",
-    description:
-      "Placeholder card so the grid reads correctly. Real content comes from the projects table once you add an entry in the admin dashboard.",
-    techStack: ["Tech", "Tech", "Tech"],
-    githubUrl: null,
-    liveUrl: null,
-    imageUrl: null,
-    badge: "Sample row",
-    dateCompleted: null,
-  },
-  {
-    id: "sample-3",
-    slug: "project-three",
-    title: "Project three",
-    description:
-      "Placeholder card so the grid reads correctly. Real content comes from the projects table once you add an entry in the admin dashboard.",
-    techStack: ["Tech", "Tech"],
-    githubUrl: null,
-    liveUrl: null,
-    imageUrl: null,
-    badge: "Sample row",
-    dateCompleted: null,
-  },
-];
+/** Columns selected from the `projects` table, in snake_case as stored. */
+type ProjectRow = {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  tech_stack: string[] | null;
+  github_url: string | null;
+  live_url: string | null;
+  image_url: string | null;
+  badge: string | null;
+  date_completed: string | null;
+};
 
+function rowToProject(row: ProjectRow): Project {
+  return {
+    id: row.id,
+    slug: row.slug,
+    title: row.title,
+    description: row.description,
+    techStack: row.tech_stack ?? [],
+    githubUrl: row.github_url,
+    liveUrl: row.live_url,
+    imageUrl: row.image_url,
+    badge: row.badge,
+    dateCompleted: row.date_completed,
+  };
+}
+
+const COLUMNS =
+  "id, slug, title, description, tech_stack, github_url, live_url, image_url, badge, date_completed";
+
+/**
+ * All projects, newest first, from the Supabase `projects` table.
+ *
+ * On any error (table missing, network, misconfig) it logs and returns an
+ * empty list so the homepage falls back to its empty state rather than
+ * failing the request or the build.
+ */
 export async function getProjects(): Promise<Project[]> {
-  return SAMPLE_PROJECTS;
+  try {
+    const supabase = createPublicClient();
+    const { data, error } = await supabase
+      .from("projects")
+      .select(COLUMNS)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("getProjects: Supabase query failed:", error.message);
+      return [];
+    }
+    return (data as ProjectRow[]).map(rowToProject);
+  } catch (err) {
+    console.error("getProjects:", err);
+    return [];
+  }
 }
