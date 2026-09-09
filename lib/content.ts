@@ -12,7 +12,7 @@ export const profile = {
   name: "Mohamed Shamik",
   kicker: "SINGAPORE INSTITUTE OF TECHNOLOGY · SOFTWARE ENGINEER",
   tagline:
-    "I'm a Software Engineer who builds end-to-end systems. From architecting data pipelines and training deep-learning models to crafting seamless, AI-driven user experiences, I solve complex problems across the entire stack.",
+    "Software Engineer working across the full stack — architecting data pipelines, training deep-learning models, and shipping the AI-powered experiences built on top of them",
   openToWork: true,
   openToWorkText:
     "Open to work — internships & graduate roles",
@@ -53,9 +53,9 @@ export const ticker = [
 ];
 
 export const aboutParagraphs = [
-  "I'm an ICT (Software Engineering) undergraduate at the Singapore Institute of Technology. Most of my time goes into machine learning — convolutional networks, image restoration, and the unglamorous work of getting data clean enough to train on.",
-  "Outside of models, I build the systems around them: APIs, cloud deployments, and front-ends that make a model usable by someone who has never opened a notebook.",
-  "Looking for internship and graduate roles in machine learning engineering, cloud, or full-stack development.",
+  "I'm a Software Engineering undergraduate at SIT. My interest lies in AI systems and end-to-end system design— building the full path from a working model to something deployed and usable.",
+  "That means APIs, cloud deployments, and front-ends that make a model usable by someone who has never opened a notebook.",
+  "Looking for internship and graduate roles in AI/ML Engineer or Software Engineering / Development.",
 ];
 
 export const skillGroups = [
@@ -85,14 +85,6 @@ export const certifications = [
     kind: "Foundational",
     org: "Amazon Web Services · Credential ID placeholder",
     desc: "Core AWS services, billing and the shared responsibility model.",
-  },
-  {
-    dates: "Issued Nov 2025",
-    duration: "No expiry",
-    role: "Certification name",
-    kind: "Associate",
-    org: "Issuing body · Credential ID placeholder",
-    desc: "One line on what the certification covers.",
   },
 ];
 
