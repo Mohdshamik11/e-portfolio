@@ -195,7 +195,7 @@ export function Hero() {
               rel="noopener"
               className="btn btn-secondary"
             >
-              Download résumé (PDF)
+              Download resume (PDF)
             </a>
           </div>
         </div>
