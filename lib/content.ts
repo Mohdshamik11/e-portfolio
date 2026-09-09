@@ -26,8 +26,8 @@ export const profile = {
    *   - banner: wide, roughly 2400×700
    *   - headshot: portrait, roughly 800×1000
    */
-  bannerUrl: "",
-  headshotUrl: "",
+  bannerUrl: "/banner.png",
+  headshotUrl: "/headshot.jpg",
 };
 
 export const navItems = [
