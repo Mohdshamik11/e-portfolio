@@ -108,8 +108,8 @@ export function Contact() {
               maxWidth: "40ch",
             }}
           >
-            Open to internships and graduate roles in ML engineering, cloud and
-            full-stack. The fastest route is email.
+            Open to internships and graduate roles in AI/ML Engineer, Software Engineering/Development
+            The fastest route is email.
           </p>
           <a
             href={profile.resumeUrl}
@@ -119,7 +119,7 @@ export function Contact() {
             className="btn blueprint"
             style={{ marginTop: 22, background: "#f2f2f3", color: "#1d2d3d" }}
           >
-            Download résumé (PDF)
+            Download resume (PDF)
             <Corners />
           </a>
         </div>

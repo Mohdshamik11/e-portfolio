@@ -12,7 +12,7 @@ export const profile = {
   name: "Mohamed Shamik",
   kicker: "SINGAPORE INSTITUTE OF TECHNOLOGY · SOFTWARE ENGINEER",
   tagline:
-    "Software Engineer working across the full stack — architecting data pipelines, training deep-learning models, and shipping the AI-powered experiences built on top of them",
+    "Software Engineer working across the full stack — architecting data pipelines, training deep-learning models, and shipping AI-powered experiences built on top of them",
   openToWork: true,
   openToWorkText:
     "Open to work — internships & graduate roles",
@@ -53,9 +53,8 @@ export const ticker = [
 ];
 
 export const aboutParagraphs = [
-  "I'm a Software Engineering undergraduate at SIT. My interest lies in AI systems and end-to-end system design— building the full path from a working model to something deployed and usable.",
-  "That means APIs, cloud deployments, and front-ends that make a model usable by someone who has never opened a notebook.",
-  "Looking for internship and graduate roles in AI/ML Engineer or Software Engineering / Development.",
+  "I'm a Software Engineering undergraduate at SIT. My interest lies in AI systems and end-to-end system design — building the full path from a working model to something deployed and usable.",
+  "Looking for internship and graduate roles in AI/ML Engineer or Software Engineering/Development.",
 ];
 
 export const skillGroups = [
@@ -73,7 +72,7 @@ export const experience = [
     role: "IT Support & Web Developer",
     kind: "Internship",
     org: "Zicom Holdings Pte Ltd",
-    desc: "Worked on a React and FastAPI service, added CI checks to the deployment pipeline, and moved batch jobs onto containerised workers.",
+    desc: "Led a full revamp of the company website on WordPress, writing custom HTML, CSS, and JavaScript on top of the platform to rebuild key templates. Added mobile responsiveness, integrated LinkedIn via a third-party service, and redesigned the UI to be more intuitive",
   },
 ];
 
@@ -102,6 +101,7 @@ export const education = [
       "Cloud Computing",
       "Software Engineering",
       "Databases",
+      "Embedded Systems"
     ],
   },
   {
