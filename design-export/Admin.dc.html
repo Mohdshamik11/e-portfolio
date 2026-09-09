@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/industry-b1e818c4-ea8f-40ed-a33a-da1abf863967/styles.css">
+<script src="_ds/industry-b1e818c4-ea8f-40ed-a33a-da1abf863967/_ds_bundle.js"></script>
+<style>
+  html, body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent-700); }
+  a:hover { color: var(--color-accent); }
+  :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  ::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+  [data-theme="dark"] {
+    --color-bg: #17191a; --color-surface: #212425; --color-text: #eceded;
+    --color-divider: color-mix(in srgb, #eceded 20%, transparent);
+    --color-neutral-100: #2b2e2f; --color-neutral-800: #dcdcde;
+    --color-accent-100: #24313d; --color-accent-200: #2b3a49; --color-accent-300: #35485a;
+    --color-accent-700: #9cc6f0; --color-accent-800: #b5d9fd; --color-accent-900: #d8e8f8;
+  }
+  [data-theme="dark"] .btn-primary { background: var(--color-accent-800); border-color: var(--color-accent-800); color: #17191a; }
+  .om-in { width: 100%; box-sizing: border-box; font-family: var(--font-body); font-size: 16px; padding: 11px 12px; background: transparent; color: var(--color-text); border: 1px solid var(--color-divider); border-radius: 0; }
+  .om-in:focus { outline: 2px solid var(--color-accent); outline-offset: -1px; border-color: var(--color-accent); }
+  .om-in::placeholder { color: color-mix(in srgb, var(--color-text) 38%, transparent); }
+  textarea.om-in { line-height: 1.55; resize: vertical; }
+  [data-navitem] { transition: background 160ms ease, color 160ms ease; }
+  [data-navitem]:hover { background: color-mix(in srgb, #f2f2f3 8%, transparent); color: #f2f2f3; }
+  [data-navitem][data-active="true"] { background: color-mix(in srgb, #f2f2f3 13%, transparent); color: #f2f2f3; box-shadow: inset 2px 0 0 #9cc6f0; }
+  [data-row] { transition: background 140ms ease, border-color 140ms ease; }
+  [data-row]:hover { border-color: var(--color-accent) !important; background: color-mix(in srgb, var(--color-accent) 5%, transparent); }
+  [data-row][data-dragging="true"] { opacity: 0.4; }
+  [data-msg][data-selected="true"] { background: color-mix(in srgb, var(--color-accent) 9%, transparent); box-shadow: inset 2px 0 0 var(--color-accent); }
+  [data-seg] { transition: background 140ms ease, color 140ms ease; }
+  [data-seg][data-active="true"] { background: var(--color-accent); color: #f2f2f3; border-color: var(--color-accent) !important; }
+  [data-density="dense"] [data-row] { padding-top: 9px !important; padding-bottom: 9px !important; }
+  [data-ghost]:hover { border-color: var(--color-accent) !important; color: var(--color-accent) !important; }
+  @keyframes om-spin { to { transform: rotate(360deg); } }
+  @keyframes om-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes om-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+  [data-om-burger] { display: none; }
+  @media (max-width: 1180px) { [data-om-shell] { grid-template-columns: minmax(0, 1fr) !important; } [data-om-side] { display: none !important; } [data-om-two] { grid-template-columns: minmax(0, 1fr) !important; } [data-om-burger] { display: flex !important; } }
+  @media (prefers-reduced-motion: reduce) { [data-om-anim] { animation: none !important; } }
+</style>
+</helmet>
+<div data-theme="{{ theme }}" data-density="{{ density }}" data-om-shell style="min-height: 100vh; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); display: grid; grid-template-columns: 262px minmax(0, 1fr)">
+
+  <aside data-om-side style="background: #1d2d3d; color: color-mix(in srgb, #f2f2f3 72%, transparent); position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; overflow: hidden">
+    <div style="position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(90deg, color-mix(in srgb, #f2f2f3 6%, transparent) 1px, transparent 1px); background-size: 44px 44px"></div>
+    <div style="position: relative; padding: 22px 20px 18px; border-bottom: 1px solid color-mix(in srgb, #f2f2f3 14%, transparent); display: flex; align-items: center; gap: 11px">
+      <span style="width: 30px; height: 30px; flex: none; border: 1px solid color-mix(in srgb, #f2f2f3 45%, transparent); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: 16px; color: #f2f2f3">M</span>
+      <span style="display: flex; flex-direction: column; line-height: 1.2">
+        <span style="font-family: var(--font-heading); font-size: 17px; color: #f2f2f3; letter-spacing: 0.02em">Mohamed Shamik</span>
+        <span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: color-mix(in srgb, #f2f2f3 50%, transparent)">Site admin</span>
+      </span>
+    </div>
+
+    <nav style="position: relative; flex: 1; overflow-y: auto; padding: 14px 0 20px">
+      <sc-for list="{{ navGroups }}" as="g" hint-placeholder-count="4">
+        <div style="margin-bottom: 6px">
+          <button onClick="{{ g.toggle }}" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: transparent; border: 0; cursor: pointer; padding: 10px 20px 8px; font-family: var(--font-heading); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: color-mix(in srgb, #f2f2f3 44%, transparent)">
+            <span>{{ g.label }}</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="transform: rotate({{ g.deg }}deg); transition: transform 180ms ease"><path d="m6 9 6 6 6-6"></path></svg>
+          </button>
+          <sc-if value="{{ g.open }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column">
+              <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+                <button data-navitem data-active="{{ it.active }}" onClick="{{ it.go }}" style="display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: transparent; border: 0; cursor: pointer; padding: 10px 20px; font-family: var(--font-body); font-size: 16px; color: inherit">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; opacity: 0.85"><path d="{{ it.d }}"></path></svg>
+                  <span style="flex: 1">{{ it.label }}</span>
+                  <sc-if value="{{ it.hasBadge }}" hint-placeholder-val="{{ false }}">
+                    <span style="min-width: 21px; height: 19px; padding: 0 5px; display: inline-flex; align-items: center; justify-content: center; background: var(--color-accent); color: #f2f2f3; font-size: 12px; font-family: var(--font-heading)">{{ it.badge }}</span>
+                  </sc-if>
+                </button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </nav>
+
+    <div style="position: relative; padding: 16px 20px; border-top: 1px solid color-mix(in srgb, #f2f2f3 14%, transparent); display: flex; flex-direction: column; gap: 10px">
+      <a href="Portfolio.dc.html" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 9px; font-size: 15px; color: color-mix(in srgb, #f2f2f3 82%, transparent); text-decoration: none" style-hover="color: #f2f2f3">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M15 3h6v6 M10 14 21 3 M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+        <span>View live site</span>
+      </a>
+      <a href="Admin%20Login.dc.html" style="display: flex; align-items: center; gap: 9px; font-size: 15px; color: color-mix(in srgb, #f2f2f3 60%, transparent); text-decoration: none" style-hover="color: #f2f2f3">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4 M16 17l5-5-5-5 M21 12H9"></path></svg>
+        <span>Sign out</span>
+      </a>
+    </div>
+  </aside>
+
+  <main style="min-width: 0; display: flex; flex-direction: column">
+    <header style="position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-divider); padding: 16px clamp(20px, 3vw, 40px); display: flex; align-items: center; gap: 18px; flex-wrap: wrap">
+      <button data-om-burger onClick="{{ openMenu }}" aria-label="Open navigation" style="flex: none; align-items: center; justify-content: center; width: 40px; height: 40px; background: transparent; border: 1px solid var(--color-divider); cursor: pointer; color: var(--color-text)" style-hover="border-color: var(--color-accent); color: var(--color-accent)">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18 M3 12h18 M3 18h18"></path></svg>
+      </button>
+      <div style="flex: 1; min-width: 160px">
+        <p style="margin: 0 0 3px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 48%, transparent)">{{ crumb }}</p>
+        <h1 style="margin: 0; font-family: var(--font-heading); font-size: 27px; font-weight: 600; line-height: 1.05">{{ screenTitle }}</h1>
+      </div>
+      <span style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: color-mix(in srgb, var(--color-text) 55%, transparent)">
+        <span style="width: 7px; height: 7px; background: var(--color-accent); border-radius: 50%; animation: om-pulse 2.6s ease-in-out infinite"></span>
+        <span>{{ savedNote }}</span>
+      </span>
+      <button onClick="{{ toggleTheme }}" data-ghost class="btn btn-ghost" style="font-size: 15px; padding: 8px 12px">{{ themeLabel }}</button>
+      <a class="btn btn-secondary" href="Portfolio.dc.html" target="_blank" rel="noopener" style="font-size: 15px; text-decoration: none">Preview site</a>
+    </header>
+
+    <div style="padding: clamp(22px, 3vw, 38px) clamp(20px, 3vw, 40px) 90px; flex: 1">
+
+      <sc-if value="{{ isOverview }}" hint-placeholder-val="{{ true }}">
+        <div data-om-anim="rise" style="animation: om-rise 380ms ease both">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px">
+            <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+              <div class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 20px 18px">
+                <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                <p style="margin: 0 0 8px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-accent-700)">{{ s.label }}</p>
+                <p style="margin: 0; font-family: var(--font-heading); font-size: 46px; line-height: 0.9; font-weight: 600">{{ s.value }}</p>
+                <p style="margin: 10px 0 0; font-size: 14px; color: color-mix(in srgb, var(--color-text) 58%, transparent)">{{ s.note }}</p>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin: 28px 0 32px">
+            <sc-for list="{{ quickActions }}" as="q" hint-placeholder-count="3">
+              <button onClick="{{ q.go }}" data-ghost style="display: flex; align-items: center; gap: 10px; background: transparent; border: 1px solid var(--color-divider); padding: 12px 16px; cursor: pointer; font-family: var(--font-body); font-size: 16px; color: var(--color-text)">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ q.d }}"></path></svg>
+                <span>{{ q.label }}</span>
+              </button>
+            </sc-for>
+          </div>
+
+          <div data-om-two style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px">
+            <sc-if value="{{ showChecklist }}" hint-placeholder-val="{{ true }}">
+              <section class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 24px">
+                <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                <h2 style="margin: 0 0 4px; font-family: var(--font-heading); font-size: 22px; font-weight: 600">Publish checklist</h2>
+                <p style="margin: 0 0 18px; font-size: 15px; color: color-mix(in srgb, var(--color-text) 58%, transparent)">{{ checklistNote }}</p>
+                <div style="display: flex; flex-direction: column">
+                  <sc-for list="{{ checklist }}" as="c" hint-placeholder-count="5">
+                    <div style="display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-top: 1px solid var(--color-divider)">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ c.color }}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="{{ c.d }}"></path></svg>
+                      <span style="flex: 1">
+                        <span style="display: block; font-size: 16px">{{ c.label }}</span>
+                        <span style="display: block; font-size: 14px; color: color-mix(in srgb, var(--color-text) 55%, transparent)">{{ c.hint }}</span>
+                      </span>
+                      <sc-if value="{{ c.todo }}" hint-placeholder-val="{{ false }}">
+                        <button onClick="{{ c.go }}" style="background: transparent; border: 0; cursor: pointer; font-family: var(--font-body); font-size: 15px; color: var(--color-accent-700); text-decoration: underline; padding: 0">Fix</button>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+              </section>
+            </sc-if>
+
+            <section class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 24px">
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 18px">
+                <span>
+                  <h2 style="margin: 0 0 4px; font-family: var(--font-heading); font-size: 22px; font-weight: 600">Recent messages</h2>
+                  <p style="margin: 0; font-size: 15px; color: color-mix(in srgb, var(--color-text) 58%, transparent)">From the contact form</p>
+                </span>
+                <button onClick="{{ goInbox }}" style="background: transparent; border: 0; padding: 0; cursor: pointer; font-family: var(--font-body); font-size: 15px; color: var(--color-accent-700); text-decoration: underline">Open inbox</button>
+              </div>
+              <div style="display: flex; flex-direction: column">
+                <sc-for list="{{ recentMessages }}" as="m" hint-placeholder-count="3">
+                  <button onClick="{{ m.open }}" style="display: flex; gap: 12px; align-items: flex-start; text-align: left; background: transparent; border: 0; border-top: 1px solid var(--color-divider); padding: 14px 0; cursor: pointer; color: inherit; font-family: var(--font-body)">
+                    <span style="width: 8px; height: 8px; flex: none; margin-top: 8px; border-radius: 50%; background: {{ m.dot }}"></span>
+                    <span style="flex: 1; min-width: 0">
+                      <span style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline">
+                        <span style="font-size: 16px; font-weight: 600">{{ m.from }}</span>
+                        <span style="font-size: 13px; color: color-mix(in srgb, var(--color-text) 50%, transparent); flex: none">{{ m.when }}</span>
+                      </span>
+                      <span style="display: block; font-size: 15px; color: color-mix(in srgb, var(--color-text) 62%, transparent); overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ m.subject }}</span>
+                    </span>
+                  </button>
+                </sc-for>
+              </div>
+            </section>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isProjects }}" hint-placeholder-val="{{ false }}">
+        <div data-om-anim="rise" style="animation: om-rise 380ms ease both">
+          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 22px">
+            <div style="display: flex; border: 1px solid var(--color-divider)">
+              <sc-for list="{{ projectFilters }}" as="f" hint-placeholder-count="3">
+                <button data-seg data-active="{{ f.active }}" onClick="{{ f.go }}" style="background: transparent; border: 0; border-right: 1px solid var(--color-divider); padding: 9px 16px; cursor: pointer; font-family: var(--font-heading); font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text)">{{ f.label }}</button>
+              </sc-for>
+            </div>
+            <span style="flex: 1"></span>
+            <p style="margin: 0; font-size: 14px; color: color-mix(in srgb, var(--color-text) 52%, transparent)">Drag a handle or use the arrows to set the order shown on the site.</p>
+            <button class="btn btn-primary blueprint" onClick="{{ newProject }}" style="position: relative; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.08em; font-size: 16px; padding: 11px 18px">
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              New project
+            </button>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <sc-for list="{{ visibleProjects }}" as="p" hint-placeholder-count="3">
+              <div data-row data-dragging="{{ p.dragging }}" draggable="true" onDragStart="{{ p.onDragStart }}" onDragOver="{{ p.onDragOver }}" onDragEnd="{{ p.onDragEnd }}" style="display: flex; align-items: center; gap: 16px; border: 1px solid var(--color-divider); padding: 14px 16px; background: transparent">
+                <span style="display: flex; flex-direction: column; align-items: center; gap: 2px; flex: none; color: color-mix(in srgb, var(--color-text) 40%, transparent)">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" style="cursor: grab"><path d="M9 5h.01 M9 12h.01 M9 19h.01 M15 5h.01 M15 12h.01 M15 19h.01"></path></svg>
+                </span>
+                <span style="width: 66px; height: 46px; flex: none; border: 1px solid var(--color-divider); background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 16%, transparent) 0 6px, transparent 6px 13px)"></span>
+                <span style="flex: 1; min-width: 0">
+                  <span style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap">
+                    <span style="font-family: var(--font-heading); font-size: 21px; font-weight: 600">{{ p.title }}</span>
+                    <span style="font-size: 13px; color: color-mix(in srgb, var(--color-text) 45%, transparent)">/{{ p.slug }}</span>
+                  </span>
+                  <span style="display: flex; gap: 8px; margin-top: 7px; flex-wrap: wrap; align-items: center">
+                    <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="3">
+                      <span class="tag tag-outline" style="font-size: 12px">{{ t }}</span>
+                    </sc-for>
+                    <span style="font-size: 13px; color: color-mix(in srgb, var(--color-text) 48%, transparent)">Updated {{ p.updated }}</span>
+                  </span>
+                </span>
+                <button onClick="{{ p.toggleStatus }}" title="Toggle published" style="flex: none; display: flex; align-items: center; gap: 7px; background: transparent; border: 1px solid {{ p.statusColor }}; padding: 6px 11px; cursor: pointer; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: {{ p.statusColor }}">
+                  <span style="width: 7px; height: 7px; border-radius: 50%; background: {{ p.statusColor }}"></span>
+                  <span>{{ p.status }}</span>
+                </button>
+                <span style="display: flex; flex-direction: column; gap: 2px; flex: none">
+                  <button onClick="{{ p.moveUp }}" aria-label="Move up" data-ghost style="background: transparent; border: 1px solid var(--color-divider); width: 26px; height: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--color-text)">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg>
+                  </button>
+                  <button onClick="{{ p.moveDown }}" aria-label="Move down" data-ghost style="background: transparent; border: 1px solid var(--color-divider); width: 26px; height: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--color-text)">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+                  </button>
+                </span>
+                <button class="btn btn-secondary" onClick="{{ p.edit }}" style="flex: none; font-size: 15px; padding: 8px 14px">Edit</button>
+                <button onClick="{{ p.remove }}" aria-label="Delete project" data-ghost style="flex: none; background: transparent; border: 1px solid var(--color-divider); width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: color-mix(in srgb, var(--color-text) 55%, transparent)">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18 M8 6V4h8v2 M19 6l-1 14H6L5 6 M10 11v5 M14 11v5"></path></svg>
+                </button>
+              </div>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{ projectsEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="border: 1px dashed var(--color-divider); padding: 54px; text-align: center">
+              <p style="margin: 0 0 6px; font-family: var(--font-heading); font-size: 22px">Nothing here</p>
+              <p style="margin: 0; font-size: 16px; color: color-mix(in srgb, var(--color-text) 58%, transparent)">No projects match this filter.</p>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isEditor }}" hint-placeholder-val="{{ false }}">
+        <div data-om-anim="rise" style="animation: om-rise 380ms ease both">
+          <button onClick="{{ goProjects }}" style="display: flex; align-items: center; gap: 8px; background: transparent; border: 0; padding: 0; margin-bottom: 20px; cursor: pointer; font-family: var(--font-body); font-size: 15px; color: var(--color-accent-700)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+            <span>All projects</span>
+          </button>
+
+          <div data-om-two style="display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 26px; align-items: start">
+            <div style="display: flex; flex-direction: column; gap: 22px">
+
+              <section class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 24px">
+                <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                <h2 style="margin: 0 0 20px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700)">01 — Basics</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px">
+                  <label style="display: block; grid-column: 1 / -1">
+                    <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Project title</span>
+                    <input class="om-in" value="{{ ed.title }}" onChange="{{ ed.setTitle }}" style="font-family: var(--font-heading); font-size: 22px">
+                  </label>
+                  <label style="display: block">
+                    <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">URL slug</span>
+                    <input class="om-in" value="{{ ed.slug }}" onChange="{{ ed.setSlug }}">
+                  </label>
+                  <label style="display: block">
+                    <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Year</span>
+                    <input class="om-in" value="{{ ed.year }}" onChange="{{ ed.setYear }}">
+                  </label>
+                  <label style="display: block">
+                    <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Role</span>
+                    <input class="om-in" value="{{ ed.role }}" onChange="{{ ed.setRole }}">
+                  </label>
+                  <label style="display: block">
+                    <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Period</span>
+                    <input class="om-in" value="{{ ed.period }}" onChange="{{ ed.setPeriod }}">
+                  </label>
+                  <label style="display: block; grid-column: 1 / -1">
+                    <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Card summary</span>
+                    <textarea class="om-in" rows="3" onChange="{{ ed.setDesc }}" value="{{ ed.desc }}"></textarea>
+                    <span style="display: block; margin-top: 6px; font-size: 13px; color: color-mix(in srgb, var(--color-text) 48%, transparent)">{{ ed.descCount }} / 240 characters — shown on the projects grid.</span>
+                  </label>
+                  <label style="display: block; grid-column: 1 / -1">
+                    <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Tech stack</span>
+                    <span style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; border: 1px solid var(--color-divider); padding: 9px 10px">
+                      <sc-for list="{{ ed.tags }}" as="t" hint-placeholder-count="4">
+                        <span class="tag tag-accent" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px">
+                          <span>{{ t.label }}</span>
+                          <button onClick="{{ t.remove }}" aria-label="Remove tag" style="background: transparent; border: 0; padding: 0; cursor: pointer; color: inherit; display: flex">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18 M6 6l12 12"></path></svg>
+                          </button>
+                        </span>
+                      </sc-for>
+                      <input placeholder="Add tech + Enter" onKeyDown="{{ ed.addTag }}" style="flex: 1; min-width: 130px; border: 0; background: transparent; color: var(--color-text); font-family: var(--font-body); font-size: 15px; padding: 4px; outline: none">
+                    </span>
+                  </label>
+                </div>
+              </section>
+
+              <section class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 24px">
+                <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                <h2 style="margin: 0 0 6px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700)">02 — Case study</h2>
+                <p style="margin: 0 0 20px; font-size: 15px; color: color-mix(in srgb, var(--color-text) 58%, transparent)">These blocks become the long-form detail page at /projects/{{ ed.slug }}.</p>
+                <label style="display: block; margin-bottom: 18px">
+                  <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Overview</span>
+                  <textarea class="om-in" rows="3" onChange="{{ ed.setOverview }}" value="{{ ed.overview }}"></textarea>
+                </label>
+                <div style="display: flex; flex-direction: column; gap: 16px">
+                  <sc-for list="{{ ed.blocks }}" as="b" hint-placeholder-count="4">
+                    <div style="border-top: 1px solid var(--color-divider); padding-top: 16px">
+                      <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 9px">
+                        <input class="om-in" value="{{ b.h }}" onChange="{{ b.setH }}" style="flex: 1; font-family: var(--font-heading); font-size: 18px; padding: 8px 10px">
+                        <button onClick="{{ b.remove }}" aria-label="Remove block" data-ghost style="flex: none; background: transparent; border: 1px solid var(--color-divider); width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: color-mix(in srgb, var(--color-text) 55%, transparent)">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18 M8 6V4h8v2 M19 6l-1 14H6L5 6"></path></svg>
+                        </button>
+                      </div>
+                      <textarea class="om-in" rows="4" onChange="{{ b.setP }}" value="{{ b.p }}"></textarea>
+                    </div>
+                  </sc-for>
+                </div>
+                <button onClick="{{ ed.addBlock }}" data-ghost style="margin-top: 18px; display: flex; align-items: center; gap: 8px; background: transparent; border: 1px dashed var(--color-divider); padding: 11px 15px; width: 100%; justify-content: center; cursor: pointer; font-family: var(--font-body); font-size: 15px; color: color-mix(in srgb, var(--color-text) 70%, transparent)">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14 M5 12h14"></path></svg>
+                  <span>Add case-study block</span>
+                </button>
+              </section>
+
+              <section class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 24px">
+                <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                <h2 style="margin: 0 0 20px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700)">03 — Gallery &amp; video</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px">
+                  <sc-for list="{{ ed.gallery }}" as="g" hint-placeholder-count="2">
+                    <div style="position: relative; aspect-ratio: 16 / 10; border: 1px solid var(--color-divider); background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 16%, transparent) 0 6px, transparent 6px 13px); display: flex; align-items: flex-end; padding: 9px">
+                      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                      <span style="font-size: 12px; color: color-mix(in srgb, var(--color-text) 70%, transparent)">{{ g.label }}</span>
+                      <button onClick="{{ g.remove }}" aria-label="Remove image" style="position: absolute; top: 7px; right: 7px; width: 24px; height: 24px; background: var(--color-bg); border: 1px solid var(--color-divider); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--color-text)">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18 M6 6l12 12"></path></svg>
+                      </button>
+                    </div>
+                  </sc-for>
+
+                  <button onClick="{{ upload.click }}" data-ghost style="aspect-ratio: 16 / 10; border: 1px dashed var(--color-divider); background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; padding: 12px; color: color-mix(in srgb, var(--color-text) 62%, transparent); font-family: var(--font-body)">
+                    <sc-if value="{{ upload.isEmpty }}" hint-placeholder-val="{{ true }}">
+                      <span style="display: flex; flex-direction: column; align-items: center; gap: 9px">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17V3 M6 9l6-6 6 6 M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"></path></svg>
+                        <span style="font-size: 14px; text-align: center">Drop an image or click to upload<br>PNG / JPG, up to 5 MB</span>
+                      </span>
+                    </sc-if>
+                    <sc-if value="{{ upload.isUploading }}" hint-placeholder-val="{{ false }}">
+                      <span style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10px">
+                        <svg data-om-anim="spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="animation: om-spin 700ms linear infinite"><path d="M21 12a9 9 0 1 1-6.2-8.55"></path></svg>
+                        <span style="font-size: 14px">Uploading… {{ upload.pct }}%</span>
+                        <span style="width: 78%; height: 3px; background: var(--color-divider); display: block"><span style="display: block; height: 3px; background: var(--color-accent); width: {{ upload.pct }}%"></span></span>
+                      </span>
+                    </sc-if>
+                  </button>
+                </div>
+
+                <label style="display: block; margin-top: 20px">
+                  <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Video walkthrough (optional)</span>
+                  <input class="om-in" placeholder="https://…" value="{{ ed.video }}" onChange="{{ ed.setVideo }}">
+                </label>
+              </section>
+
+              <section class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 24px">
+                <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                <h2 style="margin: 0 0 20px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700)">04 — Links &amp; visibility</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px">
+                  <label style="display: block">
+                    <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Repository</span>
+                    <input class="om-in" value="{{ ed.github }}" onChange="{{ ed.setGithub }}">
+                  </label>
+                  <label style="display: block">
+                    <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Live demo</span>
+                    <input class="om-in" value="{{ ed.demo }}" onChange="{{ ed.setDemo }}">
+                  </label>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; border-top: 1px solid var(--color-divider); padding-top: 18px; flex-wrap: wrap">
+                  <span>
+                    <span style="display: block; font-size: 16px">Featured on the home grid</span>
+                    <span style="display: block; font-size: 14px; color: color-mix(in srgb, var(--color-text) 55%, transparent)">Featured projects appear first and carry a badge.</span>
+                  </span>
+                  <button onClick="{{ ed.toggleFeatured }}" role="switch" aria-checked="{{ ed.featured }}" style="flex: none; width: 52px; height: 26px; border: 1px solid {{ ed.featuredColor }}; background: transparent; cursor: pointer; padding: 2px; display: flex; justify-content: {{ ed.featuredJustify }}">
+                    <span style="width: 20px; height: 20px; background: {{ ed.featuredColor }}; display: block"></span>
+                  </button>
+                </div>
+              </section>
+            </div>
+
+            <sc-if value="{{ showPreview }}" hint-placeholder-val="{{ true }}">
+              <aside style="position: sticky; top: 104px; display: flex; flex-direction: column; gap: 14px">
+                <p style="margin: 0; font-family: var(--font-heading); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 50%, transparent)">Live preview — projects grid</p>
+                <div class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 18px; background: color-mix(in srgb, var(--color-accent) 4%, transparent)">
+                  <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                  <div style="aspect-ratio: 16 / 10; border: 1px solid var(--color-divider); background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 16%, transparent) 0 6px, transparent 6px 13px); margin-bottom: 16px"></div>
+                  <p style="margin: 0 0 8px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-accent-700)">{{ ed.year }} · {{ ed.role }}</p>
+                  <h3 style="margin: 0 0 10px; font-family: var(--font-heading); font-size: 25px; font-weight: 600; line-height: 1.1">{{ ed.title }}</h3>
+                  <p style="margin: 0 0 14px; font-size: 16px; line-height: 1.55; color: color-mix(in srgb, var(--color-text) 72%, transparent); text-wrap: pretty">{{ ed.desc }}</p>
+                  <div style="display: flex; gap: 7px; flex-wrap: wrap">
+                    <sc-for list="{{ ed.tags }}" as="t" hint-placeholder-count="3">
+                      <span class="tag tag-outline" style="font-size: 12px">{{ t.label }}</span>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="border: 1px solid var(--color-divider); padding: 18px">
+                  <p style="margin: 0 0 12px; font-family: var(--font-heading); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 50%, transparent)">Detail page outline</p>
+                  <sc-for list="{{ ed.blocks }}" as="b" hint-placeholder-count="3">
+                    <div style="display: flex; gap: 10px; padding: 8px 0; border-top: 1px solid var(--color-divider)">
+                      <span style="font-size: 12px; color: var(--color-accent-700); font-family: var(--font-heading)">{{ b.num }}</span>
+                      <span style="flex: 1">
+                        <span style="display: block; font-size: 15px">{{ b.h }}</span>
+                        <span style="display: block; font-size: 13px; color: color-mix(in srgb, var(--color-text) 50%, transparent)">{{ b.words }} words</span>
+                      </span>
+                    </div>
+                  </sc-for>
+                </div>
+                <a href="Portfolio.dc.html" target="_blank" rel="noopener" style="font-size: 15px">Open the real page in a new tab →</a>
+              </aside>
+            </sc-if>
+          </div>
+
+          <div style="position: sticky; bottom: 0; margin: 26px 0 -90px; padding: 16px 0; background: color-mix(in srgb, var(--color-bg) 94%, transparent); backdrop-filter: blur(8px); border-top: 1px solid var(--color-divider); display: flex; align-items: center; gap: 14px; flex-wrap: wrap; z-index: 15">
+            <span style="flex: 1; font-size: 14px; color: color-mix(in srgb, var(--color-text) 55%, transparent)">{{ ed.dirtyNote }}</span>
+            <button onClick="{{ goProjects }}" data-ghost style="background: transparent; border: 1px solid var(--color-divider); padding: 10px 16px; cursor: pointer; font-family: var(--font-body); font-size: 15px; color: var(--color-text)">Discard</button>
+            <button class="btn btn-secondary" onClick="{{ ed.saveDraft }}" style="font-size: 15px">Save draft</button>
+            <button class="btn btn-primary blueprint" onClick="{{ ed.publish }}" style="position: relative; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.08em; font-size: 16px; padding: 11px 20px">
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              {{ ed.publishLabel }}
+            </button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isRecords }}" hint-placeholder-val="{{ false }}">
+        <div data-om-anim="rise" style="animation: om-rise 380ms ease both">
+          <div style="display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 24px">
+            <p style="margin: 0; flex: 1; min-width: 240px; max-width: 60ch; font-size: 17px; line-height: 1.55; color: color-mix(in srgb, var(--color-text) 65%, transparent); text-wrap: pretty">{{ rec.blurb }}</p>
+            <button class="btn btn-primary blueprint" onClick="{{ rec.add }}" style="position: relative; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.08em; font-size: 16px; padding: 11px 18px">
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              {{ rec.addLabel }}
+            </button>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <sc-for list="{{ rec.rows }}" as="r" hint-placeholder-count="3">
+              <div style="border: 1px solid var(--color-divider)">
+                <div data-row style="display: flex; align-items: center; gap: 16px; padding: 15px 16px; background: transparent">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" style="flex: none; cursor: grab; color: color-mix(in srgb, var(--color-text) 38%, transparent)"><path d="M9 5h.01 M9 12h.01 M9 19h.01 M15 5h.01 M15 12h.01 M15 19h.01"></path></svg>
+                  <span style="flex: 1; min-width: 0">
+                    <span style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap">
+                      <span style="font-family: var(--font-heading); font-size: 21px; font-weight: 600">{{ r.title }}</span>
+                      <sc-if value="{{ r.hasBadge }}" hint-placeholder-val="{{ false }}">
+                        <span class="tag tag-accent" style="font-size: 12px">{{ r.badge }}</span>
+                      </sc-if>
+                    </span>
+                    <span style="display: block; margin-top: 5px; font-size: 16px; color: color-mix(in srgb, var(--color-text) 68%, transparent)">{{ r.sub }}</span>
+                  </span>
+                  <span style="flex: none; font-size: 14px; color: color-mix(in srgb, var(--color-text) 50%, transparent)">{{ r.meta }}</span>
+                  <button class="btn btn-secondary" onClick="{{ r.edit }}" style="flex: none; font-size: 15px; padding: 8px 14px">{{ r.editLabel }}</button>
+                  <button onClick="{{ r.remove }}" aria-label="Delete" data-ghost style="flex: none; background: transparent; border: 1px solid var(--color-divider); width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: color-mix(in srgb, var(--color-text) 55%, transparent)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18 M8 6V4h8v2 M19 6l-1 14H6L5 6 M10 11v5 M14 11v5"></path></svg>
+                  </button>
+                </div>
+                <sc-if value="{{ r.editing }}" hint-placeholder-val="{{ false }}">
+                  <div style="border-top: 1px solid var(--color-divider); padding: 22px 16px; background: color-mix(in srgb, var(--color-accent) 5%, transparent)">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px">
+                      <sc-for list="{{ r.fields }}" as="f" hint-placeholder-count="4">
+                        <label style="display: block; grid-column: {{ f.span }}">
+                          <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">{{ f.label }}</span>
+                          <sc-if value="{{ f.isLong }}" hint-placeholder-val="{{ false }}">
+                            <textarea class="om-in" rows="4" value="{{ f.value }}" onChange="{{ f.set }}"></textarea>
+                          </sc-if>
+                          <sc-if value="{{ f.isShort }}" hint-placeholder-val="{{ true }}">
+                            <input class="om-in" value="{{ f.value }}" onChange="{{ f.set }}">
+                          </sc-if>
+                        </label>
+                      </sc-for>
+                    </div>
+                    <div style="display: flex; gap: 12px; margin-top: 20px; align-items: center">
+                      <button class="btn btn-primary" onClick="{{ r.save }}" style="font-size: 15px">Save changes</button>
+                      <button onClick="{{ r.cancel }}" data-ghost style="background: transparent; border: 1px solid var(--color-divider); padding: 10px 16px; cursor: pointer; font-family: var(--font-body); font-size: 15px; color: var(--color-text)">Cancel</button>
+                    </div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isHero }}" hint-placeholder-val="{{ false }}">
+        <div data-om-anim="rise" data-om-two style="animation: om-rise 380ms ease both; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 26px; align-items: start">
+          <div style="display: flex; flex-direction: column; gap: 22px">
+            <section class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 24px">
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              <h2 style="margin: 0 0 20px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700)">Hero</h2>
+              <div style="display: flex; flex-direction: column; gap: 18px">
+                <label style="display: block">
+                  <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Display name</span>
+                  <input class="om-in" value="{{ hero.name }}" onChange="{{ hero.setName }}" style="font-family: var(--font-heading); font-size: 22px">
+                </label>
+                <label style="display: block">
+                  <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Role line</span>
+                  <input class="om-in" value="{{ hero.role }}" onChange="{{ hero.setRole }}">
+                </label>
+                <label style="display: block">
+                  <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Intro paragraph</span>
+                  <textarea class="om-in" rows="4" value="{{ hero.intro }}" onChange="{{ hero.setIntro }}"></textarea>
+                </label>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid var(--color-divider); padding-top: 18px; flex-wrap: wrap">
+                  <span>
+                    <span style="display: block; font-size: 16px">Show “Open to work”</span>
+                    <span style="display: block; font-size: 14px; color: color-mix(in srgb, var(--color-text) 55%, transparent)">Adds the pulsing pill to the hero, nav and contact block.</span>
+                  </span>
+                  <button onClick="{{ hero.toggleOpen }}" role="switch" aria-checked="{{ hero.openToWork }}" style="flex: none; width: 52px; height: 26px; border: 1px solid {{ hero.openColor }}; background: transparent; cursor: pointer; padding: 2px; display: flex; justify-content: {{ hero.openJustify }}">
+                    <span style="width: 20px; height: 20px; background: {{ hero.openColor }}; display: block"></span>
+                  </button>
+                </div>
+                <label style="display: block">
+                  <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Availability note</span>
+                  <input class="om-in" value="{{ hero.avail }}" onChange="{{ hero.setAvail }}">
+                </label>
+              </div>
+            </section>
+
+            <section class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 24px">
+              <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+              <h2 style="margin: 0 0 20px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700)">About</h2>
+              <label style="display: block; margin-bottom: 18px">
+                <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Body copy</span>
+                <textarea class="om-in" rows="7" value="{{ hero.about }}" onChange="{{ hero.setAbout }}"></textarea>
+              </label>
+              <label style="display: block">
+                <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Focus areas</span>
+                <span style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; border: 1px solid var(--color-divider); padding: 9px 10px">
+                  <sc-for list="{{ hero.focus }}" as="f" hint-placeholder-count="3">
+                    <span class="tag tag-accent" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px">
+                      <span>{{ f.label }}</span>
+                      <button onClick="{{ f.remove }}" aria-label="Remove" style="background: transparent; border: 0; padding: 0; cursor: pointer; color: inherit; display: flex">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18 M6 6l12 12"></path></svg>
+                      </button>
+                    </span>
+                  </sc-for>
+                  <input placeholder="Add focus area + Enter" onKeyDown="{{ hero.addFocus }}" style="flex: 1; min-width: 150px; border: 0; background: transparent; color: var(--color-text); font-family: var(--font-body); font-size: 15px; padding: 4px; outline: none">
+                </span>
+              </label>
+            </section>
+          </div>
+
+          <aside style="position: sticky; top: 104px; display: flex; flex-direction: column; gap: 14px">
+            <p style="margin: 0; font-family: var(--font-heading); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 50%, transparent)">Live preview — hero</p>
+            <div style="border: 1px solid var(--color-divider); padding: 26px; background-image: radial-gradient(color-mix(in srgb, var(--color-accent) 22%, transparent) 0.8px, transparent 0.8px); background-size: 26px 26px">
+              <sc-if value="{{ hero.openToWork }}" hint-placeholder-val="{{ true }}">
+                <span style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--color-accent); padding: 5px 11px; margin-bottom: 16px; font-size: 13px; font-family: var(--font-heading); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700)">
+                  <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); animation: om-pulse 2.4s ease-in-out infinite"></span>
+                  <span>Open to work</span>
+                </span>
+              </sc-if>
+              <h3 style="margin: 0 0 8px; font-family: var(--font-heading); font-size: 34px; line-height: 0.98; font-weight: 600">{{ hero.name }}</h3>
+              <p style="margin: 0 0 14px; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent-700)">{{ hero.role }}</p>
+              <p style="margin: 0; font-size: 16px; line-height: 1.6; color: color-mix(in srgb, var(--color-text) 72%, transparent); text-wrap: pretty">{{ hero.intro }}</p>
+              <div style="display: flex; gap: 7px; flex-wrap: wrap; margin-top: 18px">
+                <sc-for list="{{ hero.focus }}" as="f" hint-placeholder-count="3">
+                  <span class="tag tag-outline" style="font-size: 12px">{{ f.label }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isResume }}" hint-placeholder-val="{{ false }}">
+        <div data-om-anim="rise" style="animation: om-rise 380ms ease both; max-width: 820px">
+          <div class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 24px; display: flex; gap: 22px; align-items: center; flex-wrap: wrap">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <span style="width: 74px; height: 98px; flex: none; border: 1px solid var(--color-divider); background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 16%, transparent) 0 6px, transparent 6px 13px); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-family: var(--font-heading); font-size: 12px; letter-spacing: 0.1em; color: var(--color-accent-700)">PDF</span>
+            <span style="flex: 1; min-width: 220px">
+              <span style="display: block; font-family: var(--font-heading); font-size: 23px; font-weight: 600">{{ resume.name }}</span>
+              <span style="display: block; margin-top: 6px; font-size: 15px; color: color-mix(in srgb, var(--color-text) 60%, transparent)">{{ resume.meta }}</span>
+              <span style="display: flex; gap: 14px; margin-top: 12px; flex-wrap: wrap">
+                <a href="Portfolio.dc.html" target="_blank" rel="noopener" style="font-size: 15px">Open current file</a>
+                <button onClick="{{ resume.replace }}" style="background: transparent; border: 0; padding: 0; cursor: pointer; font-family: var(--font-body); font-size: 15px; color: var(--color-accent-700); text-decoration: underline">Replace</button>
+              </span>
+            </span>
+            <span style="display: flex; align-items: center; gap: 8px; flex: none; border: 1px solid var(--color-accent); padding: 6px 11px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700)">
+              <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent)"></span>
+              <span>Live on site</span>
+            </span>
+          </div>
+
+          <button onClick="{{ resume.replace }}" data-ghost style="margin-top: 18px; width: 100%; border: 1px dashed var(--color-divider); background: transparent; padding: 40px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; color: color-mix(in srgb, var(--color-text) 62%, transparent); font-family: var(--font-body)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17V3 M6 9l6-6 6 6 M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"></path></svg>
+            <span style="font-size: 16px">Drop a new PDF here to replace the resume</span>
+            <span style="font-size: 14px">The previous version stays in history for 90 days</span>
+          </button>
+
+          <h2 style="margin: 34px 0 14px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700)">Version history</h2>
+          <div style="display: flex; flex-direction: column">
+            <sc-for list="{{ resume.history }}" as="h" hint-placeholder-count="3">
+              <div style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid var(--color-divider)">
+                <span style="flex: 1; font-size: 16px">{{ h.name }}</span>
+                <span style="font-size: 14px; color: color-mix(in srgb, var(--color-text) 52%, transparent)">{{ h.when }}</span>
+                <button onClick="{{ h.restore }}" data-ghost style="background: transparent; border: 1px solid var(--color-divider); padding: 7px 13px; cursor: pointer; font-family: var(--font-body); font-size: 14px; color: var(--color-text)">Restore</button>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isInbox }}" hint-placeholder-val="{{ false }}">
+        <div data-om-anim="rise" data-om-two style="animation: om-rise 380ms ease both; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 22px; align-items: start">
+          <div style="border: 1px solid var(--color-divider)">
+            <div style="padding: 14px 16px; border-bottom: 1px solid var(--color-divider); display: flex; align-items: baseline; gap: 10px">
+              <span style="font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 60%, transparent)">Messages</span>
+              <span style="font-size: 14px; color: color-mix(in srgb, var(--color-text) 48%, transparent)">{{ inbox.count }}</span>
+            </div>
+            <sc-for list="{{ inbox.list }}" as="m" hint-placeholder-count="5">
+              <button data-msg data-selected="{{ m.selected }}" onClick="{{ m.open }}" style="display: flex; gap: 12px; width: 100%; text-align: left; align-items: flex-start; background: transparent; border: 0; border-bottom: 1px solid var(--color-divider); padding: 15px 16px; cursor: pointer; font-family: var(--font-body); color: inherit">
+                <span style="width: 8px; height: 8px; flex: none; margin-top: 8px; border-radius: 50%; background: {{ m.dot }}"></span>
+                <span style="flex: 1; min-width: 0">
+                  <span style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline">
+                    <span style="font-size: 16px; font-weight: {{ m.weight }}">{{ m.from }}</span>
+                    <span style="flex: none; font-size: 13px; color: color-mix(in srgb, var(--color-text) 48%, transparent)">{{ m.when }}</span>
+                  </span>
+                  <span style="display: block; font-size: 15px; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: color-mix(in srgb, var(--color-text) 62%, transparent)">{{ m.subject }}</span>
+                </span>
+              </button>
+            </sc-for>
+          </div>
+
+          <div class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 26px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: flex-start">
+              <span>
+                <span style="display: block; font-family: var(--font-heading); font-size: 25px; font-weight: 600">{{ inbox.open.subject }}</span>
+                <span style="display: block; margin-top: 7px; font-size: 16px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">{{ inbox.open.from }} · {{ inbox.open.email }}</span>
+              </span>
+              <span style="display: flex; gap: 8px">
+                <button onClick="{{ inbox.archive }}" data-ghost style="background: transparent; border: 1px solid var(--color-divider); padding: 8px 13px; cursor: pointer; font-family: var(--font-body); font-size: 14px; color: var(--color-text)">Archive</button>
+                <button onClick="{{ inbox.remove }}" data-ghost style="background: transparent; border: 1px solid var(--color-divider); padding: 8px 13px; cursor: pointer; font-family: var(--font-body); font-size: 14px; color: var(--color-text)">Delete</button>
+              </span>
+            </div>
+            <p style="margin: 22px 0 0; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-accent-700)">Received {{ inbox.open.received }}</p>
+            <p style="margin: 14px 0 0; font-size: 17px; line-height: 1.65; white-space: pre-line; text-wrap: pretty">{{ inbox.open.body }}</p>
+            <div style="margin-top: 26px; border-top: 1px solid var(--color-divider); padding-top: 20px">
+              <label style="display: block">
+                <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Reply</span>
+                <textarea class="om-in" rows="4" placeholder="Opens in your mail client…" value="{{ inbox.reply }}" onChange="{{ inbox.setReply }}"></textarea>
+              </label>
+              <div style="display: flex; gap: 12px; margin-top: 14px; align-items: center">
+                <button class="btn btn-primary" onClick="{{ inbox.send }}" style="font-size: 15px">Send reply</button>
+                <span style="font-size: 14px; color: color-mix(in srgb, var(--color-text) 52%, transparent)">Sends from mohamed@sit.edu.sg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+        <div data-om-anim="rise" style="animation: om-rise 380ms ease both; max-width: 760px; display: flex; flex-direction: column; gap: 22px">
+          <section class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 24px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <h2 style="margin: 0 0 20px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700)">Account</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px">
+              <label style="display: block">
+                <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">Sign-in email</span>
+                <input class="om-in" value="{{ settings.email }}" onChange="{{ settings.setEmail }}">
+              </label>
+              <label style="display: block">
+                <span style="display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 7px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">New password</span>
+                <input class="om-in" type="password" placeholder="Leave blank to keep current">
+              </label>
+            </div>
+          </section>
+
+          <section class="blueprint" style="position: relative; border: 1px solid var(--color-divider); padding: 24px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <h2 style="margin: 0 0 20px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700)">Site</h2>
+            <div style="display: flex; flex-direction: column; gap: 18px">
+              <sc-for list="{{ settings.toggles }}" as="t" hint-placeholder-count="3">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+                  <span>
+                    <span style="display: block; font-size: 16px">{{ t.label }}</span>
+                    <span style="display: block; font-size: 14px; color: color-mix(in srgb, var(--color-text) 55%, transparent)">{{ t.hint }}</span>
+                  </span>
+                  <button onClick="{{ t.toggle }}" role="switch" aria-checked="{{ t.on }}" style="flex: none; width: 52px; height: 26px; border: 1px solid {{ t.color }}; background: transparent; cursor: pointer; padding: 2px; display: flex; justify-content: {{ t.justify }}">
+                    <span style="width: 20px; height: 20px; background: {{ t.color }}; display: block"></span>
+                  </button>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+
+          <section style="border: 1px solid #b4534c; padding: 24px">
+            <h2 style="margin: 0 0 8px; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: #b4534c">Danger zone</h2>
+            <p style="margin: 0 0 18px; font-size: 16px; color: color-mix(in srgb, var(--color-text) 65%, transparent); max-width: 56ch; text-wrap: pretty">Unpublishing hides every project and section from visitors — the site returns a single “coming soon” card until you publish again.</p>
+            <button onClick="{{ settings.unpublish }}" style="background: transparent; border: 1px solid #b4534c; color: #b4534c; padding: 10px 16px; cursor: pointer; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.08em; font-size: 15px">Unpublish the site</button>
+          </section>
+        </div>
+      </sc-if>
+
+    </div>
+  </main>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 80; display: flex">
+      <div onClick="{{ closeMenu }}" style="position: absolute; inset: 0; background: color-mix(in srgb, #1d2d3d 58%, transparent)"></div>
+      <div style="position: relative; width: min(300px, 86vw); height: 100%; background: #1d2d3d; color: color-mix(in srgb, #f2f2f3 72%, transparent); display: flex; flex-direction: column; overflow-y: auto; animation: om-rise 220ms ease both">
+        <div style="padding: 18px 20px; border-bottom: 1px solid color-mix(in srgb, #f2f2f3 14%, transparent); display: flex; align-items: center; gap: 11px">
+          <span style="flex: 1; font-family: var(--font-heading); font-size: 17px; color: #f2f2f3">Mohamed Shamik</span>
+          <button onClick="{{ closeMenu }}" aria-label="Close navigation" style="width: 32px; height: 32px; background: transparent; border: 1px solid color-mix(in srgb, #f2f2f3 30%, transparent); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #f2f2f3">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18 M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <nav style="flex: 1; padding: 12px 0 18px">
+          <sc-for list="{{ navGroups }}" as="g" hint-placeholder-count="4">
+            <div style="margin-bottom: 4px">
+              <p style="margin: 0; padding: 10px 20px 6px; font-family: var(--font-heading); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: color-mix(in srgb, #f2f2f3 44%, transparent)">{{ g.label }}</p>
+              <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+                <button data-navitem data-active="{{ it.active }}" onClick="{{ it.go }}" style="display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: transparent; border: 0; cursor: pointer; padding: 12px 20px; font-family: var(--font-body); font-size: 16px; color: inherit">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; opacity: 0.85"><path d="{{ it.d }}"></path></svg>
+                  <span style="flex: 1">{{ it.label }}</span>
+                  <sc-if value="{{ it.hasBadge }}" hint-placeholder-val="{{ false }}">
+                    <span style="min-width: 21px; height: 19px; padding: 0 5px; display: inline-flex; align-items: center; justify-content: center; background: var(--color-accent); color: #f2f2f3; font-size: 12px; font-family: var(--font-heading)">{{ it.badge }}</span>
+                  </sc-if>
+                </button>
+              </sc-for>
+            </div>
+          </sc-for>
+        </nav>
+        <div style="padding: 16px 20px; border-top: 1px solid color-mix(in srgb, #f2f2f3 14%, transparent); display: flex; flex-direction: column; gap: 12px">
+          <a href="Portfolio.dc.html" target="_blank" rel="noopener" style="font-size: 15px; color: color-mix(in srgb, #f2f2f3 82%, transparent); text-decoration: none">View live site</a>
+          <a href="Admin%20Login.dc.html" style="font-size: 15px; color: color-mix(in srgb, #f2f2f3 60%, transparent); text-decoration: none">Sign out</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ confirmOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 60; background: color-mix(in srgb, #1d2d3d 62%, transparent); display: flex; align-items: flex-start; justify-content: center; padding: 24px; overflow-y: auto">
+      <div class="blueprint" style="position: relative; width: 100%; max-width: 460px; margin: auto; max-height: calc(100vh - 48px); overflow-y: auto; background: var(--color-bg); border: 1px solid var(--color-accent); padding: 28px">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <h2 style="margin: 0 0 10px; font-family: var(--font-heading); font-size: 25px; font-weight: 600">{{ confirm.title }}</h2>
+        <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.6; color: color-mix(in srgb, var(--color-text) 70%, transparent); text-wrap: pretty">{{ confirm.body }}</p>
+        <div style="display: flex; gap: 12px; justify-content: flex-end">
+          <button onClick="{{ confirm.cancel }}" data-ghost style="background: transparent; border: 1px solid var(--color-divider); padding: 10px 16px; cursor: pointer; font-family: var(--font-body); font-size: 15px; color: var(--color-text)">Keep it</button>
+          <button onClick="{{ confirm.go }}" style="background: #b4534c; border: 1px solid #b4534c; color: #f2f2f3; padding: 10px 18px; cursor: pointer; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.08em; font-size: 15px">{{ confirm.action }}</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ cropOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 60; background: color-mix(in srgb, #1d2d3d 62%, transparent); display: flex; align-items: flex-start; justify-content: center; padding: 24px; overflow-y: auto">
+      <div class="blueprint" style="position: relative; width: 100%; max-width: 620px; margin: auto; max-height: calc(100vh - 48px); overflow-y: auto; background: var(--color-bg); border: 1px solid var(--color-accent); padding: 26px">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <h2 style="margin: 0 0 6px; font-family: var(--font-heading); font-size: 25px; font-weight: 600">Crop to 16 : 10</h2>
+        <p style="margin: 0 0 20px; font-size: 15px; color: color-mix(in srgb, var(--color-text) 62%, transparent)">Project cards and the gallery both use this ratio. Drag to reposition.</p>
+        <div style="position: relative; aspect-ratio: 16 / 10; border: 1px solid var(--color-divider); background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 18%, transparent) 0 7px, transparent 7px 15px); overflow: hidden; cursor: grab">
+          <div style="position: absolute; inset: 8% 12%; border: 1px solid var(--color-accent); box-shadow: 0 0 0 9999px color-mix(in srgb, #1d2d3d 40%, transparent)">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          </div>
+        </div>
+        <label style="display: block; margin-top: 20px">
+          <span style="display: flex; justify-content: space-between; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 9px; color: color-mix(in srgb, var(--color-text) 65%, transparent)">
+            <span>Zoom</span><span>{{ crop.zoom }}%</span>
+          </span>
+          <input type="range" min="100" max="220" value="{{ crop.zoom }}" onChange="{{ crop.setZoom }}" style="width: 100%; accent-color: var(--color-accent)">
+        </label>
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 22px">
+          <button onClick="{{ crop.cancel }}" data-ghost style="background: transparent; border: 1px solid var(--color-divider); padding: 10px 16px; cursor: pointer; font-family: var(--font-body); font-size: 15px; color: var(--color-text)">Cancel</button>
+          <button class="btn btn-primary" onClick="{{ crop.apply }}" style="font-size: 15px">Apply crop</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ toastOpen }}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%); z-index: 70; display: flex; align-items: center; gap: 11px; background: #1d2d3d; color: #f2f2f3; border: 1px solid var(--color-accent); padding: 13px 20px; animation: om-rise 260ms ease both">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9cc6f0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+      <span style="font-size: 16px">{{ toast }}</span>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:940},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;density&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;balanced&quot;,&quot;dense&quot;],&quot;default&quot;:&quot;balanced&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showPreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showChecklist&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+class Component extends DCLogic {
+  state = {
+    theme: null,
+    screen: "overview",
+    groups: { work: true, portfolio: true, site: true, account: true },
+    filter: "All",
+    projects: [
+      { id: 1, title: "Image Classifier & Enhancer", slug: "image-classifier-enhancer", tags: ["PyTorch", "CNN", "U-Net", "Streamlit"], status: "Published", updated: "2 days ago", year: "2026", role: "Solo project", period: "Jan 2026 — Jun 2026", desc: "A CNN that multi-label classifies photo defects — blur, exposure, noise, contrast — paired with a U-Net that restores the ones it flags.", overview: "Photo libraries are full of images that are technically bad, and finding them by hand does not scale. This project detects those defects automatically, then repairs the ones that are recoverable.", featured: true, github: "https://github.com/Mohdshamik11", demo: "", video: "", gallery: ["upload & results view", "confidence panel", "before / after"], blocks: [
+        { h: "The problem", p: "Quality is not one label. A single photo can be blurry and underexposed and noisy at once, so a single-label classifier gives a misleading answer." },
+        { h: "Approach", p: "A convolutional network trained from scratch on a synthetically degraded dataset, with per-defect sigmoid heads. A U-Net restoration stage runs only on the defects the classifier flags." },
+        { h: "Results", p: "Per-defect precision and recall, the confusion cases worth admitting, and before/after examples from the restoration stage." },
+        { h: "What I'd do next", p: "Move from synthetic degradation to a real-world evaluation set, and expose the model behind an API." }
+      ] },
+      { id: 2, title: "Project two", slug: "project-two", tags: ["React", "FastAPI"], status: "Published", updated: "1 week ago", year: "2025", role: "Team of 4", period: "Aug 2025 — Dec 2025", desc: "Placeholder card so the grid reads correctly.", overview: "Placeholder overview.", featured: false, github: "", demo: "", video: "", gallery: ["screenshot"], blocks: [{ h: "The problem", p: "Placeholder." }, { h: "Approach", p: "Placeholder." }, { h: "Results", p: "Placeholder." }] },
+      { id: 3, title: "Project three", slug: "project-three", tags: ["Python"], status: "Draft", updated: "3 weeks ago", year: "2025", role: "Solo project", period: "2025", desc: "Placeholder card so the grid reads correctly.", overview: "Placeholder overview.", featured: false, github: "", demo: "", video: "", gallery: [], blocks: [{ h: "The problem", p: "Placeholder." }] }
+    ],
+    records: {
+      experience: [
+        { id: 1, title: "IT Support Intern", sub: "Singapore Institute of Technology · Campus IT", meta: "2025 — 2026", badge: "Current", body: "First line support for staff and lab machines, imaging and deployment, and a small internal tool for asset tracking." },
+        { id: 2, title: "Freelance Web Developer", sub: "Self-employed", meta: "2024 — 2025", badge: "", body: "Built and maintained small business sites, mostly static builds with a headless CMS behind them." }
+      ],
+      certifications: [
+        { id: 1, title: "AWS Certified Cloud Practitioner", sub: "Amazon Web Services", meta: "Issued Mar 2026", badge: "Verified", body: "https://www.credly.com/" },
+        { id: 2, title: "Google Data Analytics", sub: "Coursera · Google", meta: "Issued Nov 2025", badge: "", body: "https://coursera.org/verify/" }
+      ],
+      education: [
+        { id: 1, title: "BSc (Hons) Information Technology", sub: "Singapore Institute of Technology", meta: "2025 — 2028", badge: "Currently studying", body: "Software engineering track. Coursework in machine learning, distributed systems and secure development." },
+        { id: 2, title: "Diploma in Information Technology", sub: "Temasek Polytechnic", meta: "2021 — 2024", badge: "", body: "Graduated with merit. Final-year project on computer vision for retail shelf auditing." }
+      ],
+      skills: [
+        { id: 1, title: "Languages", sub: "Python, TypeScript, Java, SQL", meta: "4 items", badge: "", body: "Python, TypeScript, Java, SQL" },
+        { id: 2, title: "Machine learning", sub: "PyTorch, OpenCV, scikit-learn, U-Net", meta: "4 items", badge: "", body: "PyTorch, OpenCV, scikit-learn, U-Net" },
+        { id: 3, title: "Cloud & DevOps", sub: "AWS, Docker, GitHub Actions, Linux", meta: "4 items", badge: "", body: "AWS, Docker, GitHub Actions, Linux" }
+      ]
+    },
+    recEditing: null,
+    editingId: null,
+    draft: null,
+    upload: "empty",
+    pct: 0,
+    cropZoom: 130,
+    confirm: null,
+    toast: "",
+    dragId: null,
+    hero: {
+      name: "Mohamed Shamik",
+      role: "IT undergraduate · Machine learning & cloud",
+      intro: "Final-year IT student at Singapore Institute of Technology. I build things that classify, restore and ship — computer vision models, the APIs around them, and the interfaces people actually use.",
+      about: "I am drawn to the unglamorous half of machine learning: the data pipeline, the honest evaluation, the deployment that survives a real user. Most of my work starts as a problem I hit myself.\n\nRight now I am finishing a multi-label photo-quality classifier paired with a restoration model, and looking for a 2027 internship in ML engineering or cloud.",
+      focus: ["Computer vision", "Cloud infrastructure", "Data pipelines"],
+      openToWork: true,
+      avail: "Available from January 2027 · Singapore"
+    },
+    settings: { email: "mohamed@sit.edu.sg", toggles: { analytics: true, contactForm: true, indexing: true } },
+    messages: [
+      { id: 1, from: "Priya Raman", email: "priya.raman@northwind.sg", subject: "Internship — ML engineering, Jan 2027 intake", when: "2h", received: "9 Sep 2026, 09:14", read: false, body: "Hi Mohamed,\n\nI came across your photo-quality classifier write-up and the evaluation section stood out — most student projects skip it. We are opening two ML engineering internships for the January 2027 intake.\n\nWould you be free for a short call next week?\n\nPriya" },
+      { id: 2, from: "Daniel Ong", email: "d.ong@sit.edu.sg", subject: "Capstone showcase — can we feature your project?", when: "Yesterday", received: "8 Sep 2026, 16:40", read: false, body: "Mohamed,\n\nThe faculty showcase committee would like to include the classifier and enhancer in the November showcase. We would need a two-minute video and the poster by 20 October.\n\nDaniel" },
+      { id: 3, from: "Wei Ling Tan", email: "weiling@brightlab.io", subject: "Freelance — small internal dashboard", when: "3d", received: "6 Sep 2026, 11:02", read: false, body: "Hello,\n\nWe need a small internal dashboard built on top of an existing API. Four screens, no auth work. Are you taking freelance work this semester?\n\nWei Ling" },
+      { id: 4, from: "Recruiting Bot", email: "no-reply@jobfeed.example", subject: "12 new roles match your profile", when: "4d", received: "5 Sep 2026, 07:30", read: false, body: "Twelve new roles match your saved search for machine learning internships in Singapore." },
+      { id: 5, from: "Arun Kumar", email: "arun@kumar.dev", subject: "Question about your U-Net training setup", when: "1w", received: "2 Sep 2026, 20:15", read: true, body: "Hey — what batch size and augmentation schedule did you land on for the restoration stage? I am hitting checkerboard artefacts." }
+    ],
+    selectedMsg: 1,
+    reply: ""
+  };
+
+  componentWillUnmount() { if (this.tt) clearTimeout(this.tt); if (this.ut) clearInterval(this.ut); }
+
+  flash(toast) {
+    this.setState({ toast });
+    if (this.tt) clearTimeout(this.tt);
+    this.tt = setTimeout(() => this.setState({ toast: "" }), 2400);
+  }
+
+  go = (screen) => this.setState({ screen, recEditing: null, menuOpen: false });
+
+  // ---- projects ----
+  setProjects(list) { this.setState({ projects: list }); }
+
+  move(id, dir) {
+    const list = this.state.projects.slice();
+    const i = list.findIndex(p => p.id === id);
+    const j = i + dir;
+    if (i < 0 || j < 0 || j >= list.length) return;
+    const [row] = list.splice(i, 1);
+    list.splice(j, 0, row);
+    this.setProjects(list);
+    this.flash("Order updated");
+  }
+
+  dropOn(id) {
+    const from = this.state.dragId;
+    if (from == null || from === id) return;
+    const list = this.state.projects.slice();
+    const i = list.findIndex(p => p.id === from);
+    const j = list.findIndex(p => p.id === id);
+    const [row] = list.splice(i, 1);
+    list.splice(j, 0, row);
+    this.setProjects(list);
+  }
+
+  editProject(id) {
+    const p = this.state.projects.find(x => x.id === id);
+    this.setState({ screen: "editor", editingId: id, draft: JSON.parse(JSON.stringify(p)), upload: "empty", pct: 0 });
+  }
+
+  newProject() {
+    const draft = { id: Date.now(), title: "Untitled project", slug: "untitled-project", tags: [], status: "Draft", updated: "just now", year: "2026", role: "Solo project", period: "", desc: "", overview: "", featured: false, github: "", demo: "", video: "", gallery: [], blocks: [{ h: "The problem", p: "" }, { h: "Approach", p: "" }, { h: "Results", p: "" }] };
+    this.setState({ screen: "editor", editingId: null, draft, upload: "empty", pct: 0 });
+  }
+
+  setDraft(patch) { this.setState(s => ({ draft: Object.assign({}, s.draft, patch) })); }
+
+  commit(status) {
+    const d = Object.assign({}, this.state.draft, { status, updated: "just now" });
+    const list = this.state.projects.slice();
+    const i = list.findIndex(p => p.id === d.id);
+    if (i >= 0) list[i] = d; else list.unshift(d);
+    this.setState({ projects: list, screen: "projects", draft: null, editingId: null });
+    this.flash(status === "Published" ? "Published — live on the site" : "Draft saved");
+  }
+
+  startUpload() {
+    if (this.state.upload !== "empty") return;
+    this.setState({ upload: "uploading", pct: 0 });
+    this.ut = setInterval(() => {
+      this.setState(s => {
+        const pct = s.pct + 14;
+        if (pct >= 100) { clearInterval(this.ut); return { pct: 100, upload: "crop" }; }
+        return { pct };
+      });
+    }, 140);
+  }
+
+  // ---- records ----
+  recordConfig() {
+    const map = {
+      experience: { title: "Experience", addLabel: "Add role", blurb: "Roles appear newest first on the public site. The most recent one carries the accent border.", fields: [["title", "Job title", 0], ["sub", "Organisation", 0], ["meta", "Period", 0], ["badge", "Badge (optional)", 0], ["body", "What you did", 1]] },
+      certifications: { title: "Certifications", addLabel: "Add certification", blurb: "Each certification links out to its verification page in a new tab.", fields: [["title", "Certification", 0], ["sub", "Issuer", 0], ["meta", "Issued", 0], ["badge", "Badge (optional)", 0], ["body", "Verification URL", 0]] },
+      education: { title: "Education", addLabel: "Add qualification", blurb: "The entry marked “Currently studying” gets the pulsing badge and accent border.", fields: [["title", "Qualification", 0], ["sub", "Institution", 0], ["meta", "Years", 0], ["badge", "Badge (optional)", 0], ["body", "Notes", 1]] },
+      skills: { title: "Skills", addLabel: "Add group", blurb: "Groups render as tag clusters. Separate the skills with commas — order is preserved.", fields: [["title", "Group name", 0], ["body", "Skills, comma separated", 1]] }
+    };
+    return map[this.state.screen];
+  }
+
+  setRecord(id, key, value) {
+    const screen = this.state.screen;
+    this.setState(s => {
+      const rows = s.records[screen].map(r => r.id === id ? Object.assign({}, r, { [key]: value }) : r);
+      return { records: Object.assign({}, s.records, { [screen]: rows }) };
+    });
+  }
+
+  removeRecord(id) {
+    const screen = this.state.screen;
+    this.setState(s => {
+      const rows = s.records[screen].filter(r => r.id !== id);
+      return { records: Object.assign({}, s.records, { [screen]: rows }), confirm: null };
+    });
+    this.flash("Deleted");
+  }
+
+  addRecord() {
+    const screen = this.state.screen;
+    const id = Date.now();
+    const blank = { id, title: "New entry", sub: "", meta: "", badge: "", body: "" };
+    this.setState(s => ({ records: Object.assign({}, s.records, { [screen]: [blank].concat(s.records[screen]) }), recEditing: id }));
+  }
+
+  renderVals() {
+    const st = this.state;
+    const theme = st.theme ?? (this.props.theme ?? "light");
+    const screen = st.screen;
+    const accent = "var(--color-accent)";
+    const muted = "color-mix(in srgb, var(--color-text) 32%, transparent)";
+    const unread = st.messages.filter(m => !m.read).length;
+    const published = st.projects.filter(p => p.status === "Published").length;
+    const drafts = st.projects.length - published;
+    const isRecords = ["experience", "certifications", "education", "skills"].indexOf(screen) >= 0;
+
+    const navDefs = [
+      ["work", "Overview", [["overview", "Dashboard", "M3 3h7v9H3z M14 3h7v5h-7z M14 12h7v9h-7z M3 16h7v5H3z"]]],
+      ["portfolio", "Portfolio", [
+        ["projects", "Projects", "M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"],
+        ["experience", "Experience", "M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16 M2 9h20v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"],
+        ["certifications", "Certifications", "M15.5 12.9 17 22l-5-3-5 3 1.5-9.1 M12 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"],
+        ["education", "Education", "M2 10l10-5 10 5-10 5z M6 12v5c3 3 9 3 12 0v-5 M22 10v6"],
+        ["skills", "Skills", "m12 2 9 5-9 5-9-5z M3 12l9 5 9-5 M3 17l9 5 9-5"]
+      ]],
+      ["site", "Site content", [
+        ["hero", "Hero & About", "M4 7V4h16v3 M9 20h6 M12 4v16"],
+        ["resume", "Resume PDF", "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z M14 2v5h6 M8 13h8 M8 17h6"],
+        ["inbox", "Inbox", "M2 6h20v12H2z M2 7l10 6 10-6"]
+      ]],
+      ["account", "Account", [["settings", "Settings", "M4 21v-7 M4 10V3 M12 21v-9 M12 8V3 M20 21v-5 M20 12V3 M1 14h6 M9 12h6 M17 16h6"]]]
+    ];
+
+    const navGroups = navDefs.map(([key, label, items]) => ({
+      label, open: st.groups[key], deg: st.groups[key] ? 0 : -90,
+      toggle: () => this.setState(s => ({ groups: Object.assign({}, s.groups, { [key]: !s.groups[key] }) })),
+      items: items.map(([id, lbl, d]) => ({
+        label: lbl, d, active: screen === id || (id === "projects" && screen === "editor"),
+        hasBadge: id === "inbox" && unread > 0, badge: unread,
+        go: () => this.go(id)
+      }))
+    }));
+
+    const titles = { overview: "Dashboard", projects: "Projects", editor: st.editingId ? "Edit project" : "New project", experience: "Experience", certifications: "Certifications", education: "Education", skills: "Skills", hero: "Hero & About", resume: "Resume PDF", inbox: "Inbox", settings: "Settings" };
+    const crumbs = { overview: "Home", projects: "Portfolio", editor: "Portfolio / Projects", experience: "Portfolio", certifications: "Portfolio", education: "Portfolio", skills: "Portfolio", hero: "Site content", resume: "Site content", inbox: "Site content", settings: "Account" };
+
+    const filtered = st.filter === "All" ? st.projects : st.projects.filter(p => (st.filter === "Published" ? p.status === "Published" : p.status === "Draft"));
+
+    const visibleProjects = filtered.map(p => ({
+      title: p.title, slug: p.slug, tags: p.tags, updated: p.updated, status: p.status,
+      statusColor: p.status === "Published" ? accent : muted,
+      dragging: st.dragId === p.id,
+      onDragStart: () => this.setState({ dragId: p.id }),
+      onDragOver: (e) => { e.preventDefault(); this.dropOn(p.id); },
+      onDragEnd: () => this.setState({ dragId: null }),
+      toggleStatus: () => {
+        const list = st.projects.map(x => x.id === p.id ? Object.assign({}, x, { status: x.status === "Published" ? "Draft" : "Published", updated: "just now" }) : x);
+        this.setProjects(list);
+        this.flash(p.status === "Published" ? "Moved to drafts" : "Published — live on the site");
+      },
+      moveUp: () => this.move(p.id, -1),
+      moveDown: () => this.move(p.id, 1),
+      edit: () => this.editProject(p.id),
+      remove: () => this.setState({ confirm: { kind: "project", id: p.id, name: p.title } })
+    }));
+
+    const d = st.draft || { title: "", slug: "", tags: [], blocks: [], gallery: [] };
+    const ed = {
+      title: d.title, slug: d.slug, year: d.year, role: d.role, period: d.period, desc: d.desc,
+      overview: d.overview, github: d.github, demo: d.demo, video: d.video,
+      descCount: (d.desc || "").length,
+      featured: d.featured, featuredColor: d.featured ? accent : muted, featuredJustify: d.featured ? "flex-end" : "flex-start",
+      publishLabel: d.status === "Published" ? "Update live page" : "Publish",
+      dirtyNote: st.editingId ? "Editing a live entry — changes go out when you publish." : "New project — not visible until published.",
+      setTitle: (e) => this.setDraft({ title: e.target.value }),
+      setSlug: (e) => this.setDraft({ slug: e.target.value }),
+      setYear: (e) => this.setDraft({ year: e.target.value }),
+      setRole: (e) => this.setDraft({ role: e.target.value }),
+      setPeriod: (e) => this.setDraft({ period: e.target.value }),
+      setDesc: (e) => this.setDraft({ desc: e.target.value }),
+      setOverview: (e) => this.setDraft({ overview: e.target.value }),
+      setGithub: (e) => this.setDraft({ github: e.target.value }),
+      setDemo: (e) => this.setDraft({ demo: e.target.value }),
+      setVideo: (e) => this.setDraft({ video: e.target.value }),
+      toggleFeatured: () => this.setDraft({ featured: !d.featured }),
+      tags: (d.tags || []).map((t, i) => ({ label: t, remove: () => this.setDraft({ tags: d.tags.filter((_, j) => j !== i) }) })),
+      addTag: (e) => { if (e.key === "Enter" && e.target.value.trim()) { e.preventDefault(); this.setDraft({ tags: (d.tags || []).concat(e.target.value.trim()) }); e.target.value = ""; } },
+      blocks: (d.blocks || []).map((b, i) => ({
+        h: b.h, p: b.p, num: String(i + 1).padStart(2, "0"),
+        words: (b.p || "").trim() ? b.p.trim().split(/\s+/).length : 0,
+        setH: (e) => { const bl = d.blocks.slice(); bl[i] = Object.assign({}, bl[i], { h: e.target.value }); this.setDraft({ blocks: bl }); },
+        setP: (e) => { const bl = d.blocks.slice(); bl[i] = Object.assign({}, bl[i], { p: e.target.value }); this.setDraft({ blocks: bl }); },
+        remove: () => this.setDraft({ blocks: d.blocks.filter((_, j) => j !== i) })
+      })),
+      addBlock: () => this.setDraft({ blocks: (d.blocks || []).concat({ h: "New section", p: "" }) }),
+      gallery: (d.gallery || []).map((g, i) => ({ label: g, remove: () => this.setDraft({ gallery: d.gallery.filter((_, j) => j !== i) }) })),
+      saveDraft: () => this.commit("Draft"),
+      publish: () => this.commit("Published")
+    };
+
+    const cfg = isRecords ? this.recordConfig() : null;
+    const rec = isRecords ? {
+      blurb: cfg.blurb, addLabel: cfg.addLabel,
+      add: () => this.addRecord(),
+      rows: st.records[screen].map(r => ({
+        title: r.title, sub: r.sub, meta: r.meta, badge: r.badge, hasBadge: !!r.badge,
+        editing: st.recEditing === r.id, editLabel: st.recEditing === r.id ? "Editing" : "Edit",
+        edit: () => this.setState(s => ({ recEditing: s.recEditing === r.id ? null : r.id })),
+        cancel: () => this.setState({ recEditing: null }),
+        save: () => { this.setState({ recEditing: null }); this.flash("Saved"); },
+        remove: () => this.setState({ confirm: { kind: "record", id: r.id, name: r.title } }),
+        fields: cfg.fields.map(([key, label, long]) => ({
+          label, value: r[key] || "", isLong: !!long, isShort: !long, span: long ? "1 / -1" : "auto",
+          set: (e) => this.setRecord(r.id, key, e.target.value)
+        }))
+      }))
+    } : { blurb: "", addLabel: "", rows: [], add: () => {} };
+
+    const h = st.hero;
+    const hero = {
+      name: h.name, role: h.role, intro: h.intro, about: h.about, avail: h.avail, openToWork: h.openToWork,
+      openColor: h.openToWork ? accent : muted, openJustify: h.openToWork ? "flex-end" : "flex-start",
+      setName: (e) => this.setState(s => ({ hero: Object.assign({}, s.hero, { name: e.target.value }) })),
+      setRole: (e) => this.setState(s => ({ hero: Object.assign({}, s.hero, { role: e.target.value }) })),
+      setIntro: (e) => this.setState(s => ({ hero: Object.assign({}, s.hero, { intro: e.target.value }) })),
+      setAbout: (e) => this.setState(s => ({ hero: Object.assign({}, s.hero, { about: e.target.value }) })),
+      setAvail: (e) => this.setState(s => ({ hero: Object.assign({}, s.hero, { avail: e.target.value }) })),
+      toggleOpen: () => this.setState(s => ({ hero: Object.assign({}, s.hero, { openToWork: !s.hero.openToWork }) })),
+      focus: h.focus.map((f, i) => ({ label: f, remove: () => this.setState(s => ({ hero: Object.assign({}, s.hero, { focus: s.hero.focus.filter((_, j) => j !== i) }) })) })),
+      addFocus: (e) => { if (e.key === "Enter" && e.target.value.trim()) { e.preventDefault(); const v = e.target.value.trim(); this.setState(s => ({ hero: Object.assign({}, s.hero, { focus: s.hero.focus.concat(v) }) })); e.target.value = ""; } }
+    };
+
+    const selected = st.messages.find(m => m.id === st.selectedMsg) || st.messages[0];
+    const inbox = {
+      count: unread + " unread · " + st.messages.length + " total",
+      list: st.messages.map(m => ({
+        from: m.from, subject: m.subject, when: m.when, selected: m.id === st.selectedMsg,
+        dot: m.read ? "transparent" : accent, weight: m.read ? "400" : "600",
+        open: () => this.setState(s => ({ selectedMsg: m.id, messages: s.messages.map(x => x.id === m.id ? Object.assign({}, x, { read: true }) : x) }))
+      })),
+      open: { subject: selected.subject, from: selected.from, email: selected.email, received: selected.received, body: selected.body },
+      reply: st.reply,
+      setReply: (e) => this.setState({ reply: e.target.value }),
+      send: () => { this.setState({ reply: "" }); this.flash("Reply sent to " + selected.from); },
+      archive: () => this.flash("Archived"),
+      remove: () => this.setState({ confirm: { kind: "message", id: selected.id, name: selected.subject } })
+    };
+
+    const tg = st.settings.toggles;
+    const toggleDefs = [
+      ["analytics", "Anonymous visit counts", "Page views only — no cookies, no third-party scripts."],
+      ["contactForm", "Contact form", "Turning this off replaces the form with your email address."],
+      ["indexing", "Allow search engines", "Lets recruiters find the site from a Google search."]
+    ];
+    const settings = {
+      email: st.settings.email,
+      setEmail: (e) => this.setState(s => ({ settings: Object.assign({}, s.settings, { email: e.target.value }) })),
+      toggles: toggleDefs.map(([key, label, hint]) => ({
+        label, hint, on: tg[key], color: tg[key] ? accent : muted, justify: tg[key] ? "flex-end" : "flex-start",
+        toggle: () => this.setState(s => ({ settings: Object.assign({}, s.settings, { toggles: Object.assign({}, s.settings.toggles, { [key]: !s.settings.toggles[key] }) }) }))
+      })),
+      unpublish: () => this.setState({ confirm: { kind: "site", id: 0, name: "the whole site" } })
+    };
+
+    const c = st.confirm;
+    const confirmCopy = c ? ({
+      project: { title: "Delete “" + c.name + "”?", body: "The project, its case study and its gallery are removed from the site immediately. This cannot be undone.", action: "Delete project" },
+      record: { title: "Delete “" + c.name + "”?", body: "This entry disappears from the public section straight away.", action: "Delete entry" },
+      message: { title: "Delete this message?", body: "The message and its reply thread are removed permanently.", action: "Delete message" },
+      site: { title: "Unpublish the site?", body: "Visitors will see a single “coming soon” card. Your content stays in the admin, untouched.", action: "Unpublish" }
+    })[c.kind] : { title: "", body: "", action: "" };
+
+    return {
+      theme, density: this.props.density ?? "balanced",
+      menuOpen: !!st.menuOpen,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      themeLabel: theme === "dark" ? "Light" : "Dark",
+      toggleTheme: () => this.setState({ theme: theme === "dark" ? "light" : "dark" }),
+      navGroups,
+      screenTitle: titles[screen], crumb: crumbs[screen],
+      savedNote: "All changes saved",
+      isOverview: screen === "overview", isProjects: screen === "projects", isEditor: screen === "editor",
+      isRecords, isHero: screen === "hero", isResume: screen === "resume", isInbox: screen === "inbox", isSettings: screen === "settings",
+      showChecklist: this.props.showChecklist ?? true,
+      showPreview: this.props.showPreview ?? true,
+      stats: [
+        { label: "Projects", value: st.projects.length, note: published + " live · " + drafts + " draft" },
+        { label: "Sections", value: 7, note: "All populated" },
+        { label: "Unread mail", value: unread, note: "Oldest 1 week ago" },
+        { label: "Visits · 30d", value: "412", note: "+18% on last month" }
+      ],
+      quickActions: [
+        { label: "New project", d: "M12 5v14 M5 12h14", go: () => this.newProject() },
+        { label: "Edit hero copy", d: "M4 7V4h16v3 M9 20h6 M12 4v16", go: () => this.go("hero") },
+        { label: "Replace resume", d: "M12 17V3 M6 9l6-6 6 6 M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2", go: () => this.go("resume") },
+        { label: "Read inbox", d: "M2 6h20v12H2z M2 7l10 6 10-6", go: () => this.go("inbox") }
+      ],
+      checklistNote: "Two items left before the site is recruiter-ready.",
+      checklist: [
+        { label: "Hero and About written", hint: "Last edited 2 days ago", d: "M20 6 9 17l-5-5", color: accent, todo: false },
+        { label: "Resume PDF current", hint: "Version from August 2026", d: "M20 6 9 17l-5-5", color: accent, todo: false },
+        { label: "Every project has real results", hint: "Two projects still hold placeholder copy", d: "M12 9v4 M12 17h.01 M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z", color: "#b4534c", todo: true, go: () => this.go("projects") },
+        { label: "Gallery images uploaded", hint: "Project three has no images", d: "M12 9v4 M12 17h.01 M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z", color: "#b4534c", todo: true, go: () => this.go("projects") },
+        { label: "Contact links verified", hint: "Mail, GitHub and LinkedIn all resolve", d: "M20 6 9 17l-5-5", color: accent, todo: false }
+      ],
+      recentMessages: st.messages.slice(0, 3).map(m => ({
+        from: m.from, subject: m.subject, when: m.when, dot: m.read ? "transparent" : accent,
+        open: () => this.setState(s => ({ screen: "inbox", selectedMsg: m.id, messages: s.messages.map(x => x.id === m.id ? Object.assign({}, x, { read: true }) : x) }))
+      })),
+      goInbox: () => this.go("inbox"),
+      goProjects: () => this.setState({ screen: "projects", draft: null }),
+      newProject: () => this.newProject(),
+      projectFilters: ["All", "Published", "Drafts"].map(f => ({
+        label: f, active: st.filter === (f === "Drafts" ? "Draft" : f),
+        go: () => this.setState({ filter: f === "Drafts" ? "Draft" : f })
+      })),
+      visibleProjects, projectsEmpty: visibleProjects.length === 0,
+      ed, rec, hero, inbox, settings,
+      upload: {
+        isEmpty: st.upload === "empty", isUploading: st.upload === "uploading", pct: st.pct,
+        click: () => this.startUpload()
+      },
+      cropOpen: st.upload === "crop",
+      crop: {
+        zoom: st.cropZoom,
+        setZoom: (e) => this.setState({ cropZoom: Number(e.target.value) }),
+        cancel: () => this.setState({ upload: "empty", pct: 0 }),
+        apply: () => { this.setDraft({ gallery: (st.draft.gallery || []).concat("new upload — 1600×1000") }); this.setState({ upload: "empty", pct: 0 }); this.flash("Image added to the gallery"); }
+      },
+      resume: {
+        name: "Mohamed-Shamik-Resume-2026.pdf",
+        meta: "412 KB · uploaded 12 Aug 2026 · downloaded 34 times",
+        replace: () => this.flash("Choose a PDF to replace the current resume"),
+        history: [
+          { name: "Mohamed-Shamik-Resume-2026.pdf", when: "12 Aug 2026", restore: () => this.flash("Already the live version") },
+          { name: "Mohamed-Shamik-Resume-v3.pdf", when: "4 Mar 2026", restore: () => this.flash("Restored the March version") },
+          { name: "Mohamed-Shamik-Resume-v2.pdf", when: "19 Nov 2025", restore: () => this.flash("Restored the November version") }
+        ]
+      },
+      confirmOpen: !!c,
+      confirm: {
+        title: confirmCopy.title, body: confirmCopy.body, action: confirmCopy.action,
+        cancel: () => this.setState({ confirm: null }),
+        go: () => {
+          if (!c) return;
+          if (c.kind === "project") { this.setProjects(st.projects.filter(p => p.id !== c.id)); this.setState({ confirm: null }); this.flash("Project deleted"); }
+          else if (c.kind === "record") this.removeRecord(c.id);
+          else if (c.kind === "message") { this.setState(s => ({ messages: s.messages.filter(m => m.id !== c.id), confirm: null, selectedMsg: (s.messages.find(m => m.id !== c.id) || {}).id })); this.flash("Message deleted"); }
+          else { this.setState({ confirm: null }); this.flash("Site unpublished"); }
+        }
+      },
+      toastOpen: !!st.toast, toast: st.toast
+    };
+  }
+}
+</script>
+</body>
+</html>
