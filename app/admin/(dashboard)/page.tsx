@@ -47,7 +47,6 @@ export default async function AdminProjectsPage() {
         <div
           style={{
             border: "1px dashed var(--color-divider)",
-            borderRadius: 6,
             padding: 54,
             textAlign: "center",
           }}
@@ -69,7 +68,6 @@ export default async function AdminProjectsPage() {
                 alignItems: "center",
                 gap: 16,
                 border: "1px solid var(--color-divider)",
-                borderRadius: 6,
                 padding: "14px 16px",
                 flexWrap: "wrap",
               }}
@@ -80,7 +78,6 @@ export default async function AdminProjectsPage() {
                   height: 46,
                   flex: "none",
                   border: "1px solid var(--color-divider)",
-                  borderRadius: 4,
                   background: project.imageUrl
                     ? `center / cover no-repeat url(${JSON.stringify(project.imageUrl)})`
                     : "repeating-linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 16%, transparent) 0 6px, transparent 6px 13px)",

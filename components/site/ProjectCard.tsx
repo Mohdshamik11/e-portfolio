@@ -32,8 +32,6 @@ export function ProjectCard({ project }: { project: Project }) {
           alignItems: "flex-end",
           padding: 10,
           borderBottom: "1px solid var(--color-divider)",
-          borderTopLeftRadius: 5,
-          borderTopRightRadius: 5,
         }}
       >
         <div
