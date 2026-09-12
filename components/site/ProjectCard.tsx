@@ -24,7 +24,6 @@ export function ProjectCard({ project }: { project: Project }) {
       }}
     >
       <div
-        className="duotone"
         style={{
           aspectRatio: "16 / 10",
           background: "var(--color-accent-200)",
