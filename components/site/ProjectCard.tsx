@@ -25,6 +25,8 @@ export function ProjectCard({ project }: { project: Project }) {
     >
       <div
         style={{
+          position: "relative",
+          overflow: "hidden",
           aspectRatio: "16 / 10",
           background: "var(--color-accent-200)",
           display: "flex",
