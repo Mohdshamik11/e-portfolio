@@ -63,15 +63,36 @@ export function Certifications() {
           </p>
           <div
             style={{
-              fontFamily: mono,
-              fontSize: 12,
-              letterSpacing: "0.06em",
-              color: "var(--color-accent-700)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 10,
+              flexWrap: "wrap",
               paddingTop: 4,
               borderTop: "1px solid var(--color-divider)",
             }}
           >
-            {cert.duration}
+            <span
+              style={{
+                fontFamily: mono,
+                fontSize: 12,
+                letterSpacing: "0.06em",
+                color: "var(--color-accent-700)",
+              }}
+            >
+              {cert.duration}
+            </span>
+            {cert.certUrl && (
+              <a
+                href={cert.certUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost"
+                style={{ fontSize: 13 }}
+              >
+                View Certificate ↗
+              </a>
+            )}
           </div>
           <Corners />
         </div>

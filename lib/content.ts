@@ -78,11 +78,20 @@ export const experience = [
 
 export const certifications = [
   {
-    dates: "Issued Feb 2026",
-    duration: "Valid 3 years",
+    dates: "Issued Sep 2026",
+    duration: "No expiration",
+    role: "Professional Scrum Master I",
+    kind: "Foundational",
+    org: "Scrum.org",
+    desc: "Understand core rules, team roles, and events of the Scrum framework.",
+    certUrl: "/certificates/PSM_I.pdf",
+  },
+  {
+    dates: "In Progress",
+    duration: "—",
     role: "AWS Certified Cloud Practitioner",
     kind: "Foundational",
-    org: "Amazon Web Services · Credential ID placeholder",
+    org: "Amazon Web Services",
     desc: "Core AWS services, billing and the shared responsibility model.",
   },
 ];
