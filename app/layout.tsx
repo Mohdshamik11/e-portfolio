@@ -1,28 +1,40 @@
-import type { Metadata } from "next";
-import { Barlow, Barlow_Condensed } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-// Body text. Exposed as the CSS variable --font-barlow, which globals.css
-// feeds into the design system's --font-body token.
-const barlow = Barlow({
+// Body text. Exposed as --font-plex-sans, which globals.css feeds into the
+// design system's --font-body token.
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-barlow",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-plex-sans",
   display: "swap",
 });
 
-// Headings — the condensed companion, --font-barlow-condensed -> --font-heading.
-const barlowCondensed = Barlow_Condensed({
+// Headings — a geometric display face, --font-space-grotesk -> --font-heading.
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-barlow-condensed",
+  weight: ["500", "600", "700"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+// Labels, dates, eyebrow text — --font-plex-mono -> --font-mono.
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Mohamed Shamik — IT ePortfolio",
+  title: "Mohamed Shamik · IT ePortfolio",
   description:
     "AI/ML and deep-learning focused software engineer. Undergraduate at the Singapore Institute of Technology.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#fafafa",
 };
 
 // Runs before first paint so a previously chosen theme doesn't flash the
@@ -42,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${barlow.variable} ${barlowCondensed.variable}`}
+      className={`${plexSans.variable} ${spaceGrotesk.variable} ${plexMono.variable}`}
       suppressHydrationWarning
     >
       <head>

@@ -12,7 +12,7 @@ export const profile = {
   name: "Mohamed Shamik",
   kicker: "SINGAPORE INSTITUTE OF TECHNOLOGY · SOFTWARE ENGINEER",
   tagline:
-    "Software Engineer working across the full stack — architecting data pipelines, training deep-learning models, and shipping AI-powered experiences built on top of them",
+    "Software engineer building full-stack, AI-powered products: data pipelines, deep-learning models, and the systems that ship them.",
   openToWork: true,
   openToWorkText:
     "Open to work — internships & graduate roles",
@@ -32,6 +32,7 @@ export const profile = {
 
 export const navItems = [
   { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
@@ -67,7 +68,7 @@ export const skillGroups = [
 
 export const experience = [
   {
-    dates: "Dec 2021 — Apr 2022",
+    dates: "Dec 2021 - Apr 2022",
     duration: "4 months",
     role: "IT Support & Web Developer",
     kind: "Internship",
@@ -100,7 +101,7 @@ export const education = [
   {
     current: true,
     badge: "Degree",
-    dates: "2024 — 2028",
+    dates: "2024 - 2028",
     degree:
       "BEng (Hons) Information & Communications Technology — Software Engineering",
     school: "Singapore Institute of Technology",

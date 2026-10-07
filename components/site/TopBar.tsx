@@ -1,11 +1,9 @@
 import { navItems } from "@/lib/content";
-import { Corners } from "./Corners";
 import { ThemeToggle } from "./ThemeToggle";
 
 /**
- * Sticky header: brand, in-page section links, theme toggle, and the
- * Contact / Sign in actions. Matches the "sticky-spy" nav variant of the
- * design (without the scroll-position highlight, which can come later).
+ * Sticky header: monogram, in-page section links, theme toggle, and the
+ * Contact / Sign in actions.
  */
 export function TopBar() {
   return (
@@ -14,9 +12,9 @@ export function TopBar() {
         position: "sticky",
         top: 0,
         zIndex: 50,
-        background: "color-mix(in srgb, var(--color-bg) 88%, transparent)",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
+        background: "color-mix(in srgb, var(--color-bg) 82%, transparent)",
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
         borderBottom: "1px solid var(--color-divider)",
       }}
     >
@@ -36,8 +34,8 @@ export function TopBar() {
           style={{
             fontFamily: "var(--font-heading)",
             fontWeight: 600,
-            fontSize: 19,
-            letterSpacing: "0.02em",
+            fontSize: 18,
+            letterSpacing: "-0.01em",
             textDecoration: "none",
             color: "var(--color-text)",
             display: "flex",
@@ -49,14 +47,24 @@ export function TopBar() {
           }}
         >
           <span
+            aria-hidden="true"
             style={{
-              width: 9,
-              height: 9,
-              border: "1px solid var(--color-accent)",
-              display: "block",
+              width: 28,
+              height: 28,
+              borderRadius: 8,
+              background: "var(--color-accent)",
+              color: "#fff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontFamily: "var(--font-heading)",
+              fontSize: 13,
+              fontWeight: 700,
             }}
-          />
-          MOHAMED SHAMIK
+          >
+            MS
+          </span>
+          Mohamed Shamik
         </a>
 
         <nav
@@ -76,12 +84,10 @@ export function TopBar() {
               style={{
                 textDecoration: "none",
                 fontFamily: "var(--font-heading)",
-                fontSize: 15,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "var(--color-text)",
-                paddingBottom: 2,
-                borderBottom: "1px solid transparent",
+                fontSize: 14,
+                fontWeight: 500,
+                letterSpacing: "0.01em",
+                color: "var(--color-text-muted)",
               }}
             >
               {item.label}
@@ -101,17 +107,11 @@ export function TopBar() {
           }}
         >
           <ThemeToggle />
-          <a href="#contact" className="btn btn-primary blueprint">
+          <a href="#contact" className="btn btn-primary">
             Contact
-            <Corners />
           </a>
-          <a
-            href="/admin/login"
-            title="Site owner sign in"
-            className="btn btn-primary blueprint"
-          >
+          <a href="/admin/login" title="Site owner sign in" className="btn btn-secondary">
             Sign in
-            <Corners />
           </a>
         </div>
       </div>

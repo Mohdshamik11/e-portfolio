@@ -1,104 +1,101 @@
 /* ==========================================================================
    Global styles for the e-portfolio.
 
-   Ported from the Claude Design export under design-export:
-     - the "Industry" design system tokens and component classes
-       (the _ds/industry-<id>/styles.css file)
-     - the page-level style block from Portfolio.dc.html
+   Design system v2 (full visual overhaul): off-white/near-black neutral base
+   with a single cobalt-blue accent, Space Grotesk + IBM Plex Sans/Mono.
+   The .blueprint / .corner / .om-in / .field-label / .login-grid /
+   .admin-shell rules are kept as-is (just re-tokenized) because the admin
+   area (components/admin/**) still depends on them structurally.
 
    Fonts are loaded via next/font in app/layout.tsx and exposed as the CSS
-   variables --font-barlow and --font-barlow-condensed, which feed the design
-   system's --font-body and --font-heading tokens below.
+   variables --font-plex-sans / --font-space-grotesk / --font-plex-mono,
+   which feed --font-body / --font-heading / --font-mono below.
    ========================================================================== */
 
 /* ---- Design system: tokens ------------------------------------------------ */
 :root {
-  --color-bg: #f2f2f3;
-  --color-surface: #e9e9ea;
-  --color-text: #1d1f20;
-  --color-accent: #5980a6;
-  --color-accent-2: #728fab;
-  --color-divider: color-mix(in srgb, #1d1f20 16%, transparent);
+  /* Neutral ramp — shared lightness scale, off-white to near-black. */
+  --color-neutral-0: #fafafa;
+  --color-neutral-50: #f5f5f6;
+  --color-neutral-100: #ececee;
+  --color-neutral-200: #dddee1;
+  --color-neutral-300: #c3c5c9;
+  --color-neutral-400: #9a9da3;
+  --color-neutral-500: #75787f;
+  --color-neutral-600: #55585f;
+  --color-neutral-700: #3c3e44;
+  --color-neutral-800: #26282c;
+  --color-neutral-900: #16171a;
+  --color-neutral-950: #0e0f11;
 
-  /* Tonal ramps — one shared lightness scale across roles. */
-  --color-neutral-100: #f5f5f8;
-  --color-neutral-200: #e7e7ea;
-  --color-neutral-300: #d4d4d7;
-  --color-neutral-400: #b7b7ba;
-  --color-neutral-500: #98989b;
-  --color-neutral-600: #7a7a7d;
-  --color-neutral-700: #5d5d60;
-  --color-neutral-800: #424244;
-  --color-neutral-900: #2b2b2d;
+  /* Accent ramp — cobalt blue. Stays constant; semantic tokens below swap
+     which step they point to per theme. */
+  --color-accent-50: #eef5ff;
+  --color-accent-100: #dbe9fe;
+  --color-accent-200: #bcd7fe;
+  --color-accent-300: #8ebdfd;
+  --color-accent-400: #5a9cfa;
+  --color-accent-500: #2f6feb;
+  --color-accent-600: #1f56c9;
+  --color-accent-700: #1a46a3;
+  --color-accent-800: #1a3a82;
+  --color-accent-900: #19316a;
 
-  --color-accent-100: #eef6ff;
-  --color-accent-200: #d6ebff;
-  --color-accent-300: #b5d9fd;
-  --color-accent-400: #94bce3;
-  --color-accent-500: #749dc4;
-  --color-accent-600: #597ea3;
-  --color-accent-700: #416180;
-  --color-accent-800: #2c455d;
-  --color-accent-900: #1d2d3d;
+  /* Semantic tokens — light theme (default). */
+  --color-bg: var(--color-neutral-0);
+  --color-surface: #ffffff;
+  --color-text: var(--color-neutral-900);
+  --color-text-muted: color-mix(in srgb, var(--color-neutral-900) 60%, transparent);
+  --color-divider: color-mix(in srgb, var(--color-neutral-900) 12%, transparent);
+  --color-border-strong: color-mix(in srgb, var(--color-neutral-900) 26%, transparent);
+  --color-accent: var(--color-accent-500);
+  --color-accent-text: var(--color-accent-600);
+  --color-accent-soft: var(--color-accent-50);
 
-  --color-accent-2-100: #eef6ff;
-  --color-accent-2-200: #d6ebff;
-  --color-accent-2-300: #bdd8f2;
-  --color-accent-2-400: #9ebbd8;
-  --color-accent-2-500: #7e9cb8;
-  --color-accent-2-600: #627d98;
-  --color-accent-2-700: #486077;
-  --color-accent-2-800: #314457;
-  --color-accent-2-900: #1f2d3a;
-
-  /* Design-system font tokens, now backed by next/font variables. */
-  --font-heading: var(--font-barlow-condensed), "Barlow Condensed", system-ui, sans-serif;
+  --font-heading: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
   --font-heading-weight: 600;
-  --font-body: var(--font-barlow), "Barlow", system-ui, sans-serif;
+  --font-body: var(--font-plex-sans), "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
 
-  --space-1: 3.4px;
-  --space-2: 6.8px;
-  --space-3: 10.2px;
-  --space-4: 13.6px;
-  --space-6: 20.4px;
-  --space-8: 27.2px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
 
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 7px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 20px;
+  --radius-pill: 999px;
 
-  --shadow-sm: 0 1px 2px color-mix(in srgb, #2b2b2d 14%, transparent);
-  --shadow-md: 0 3px 10px color-mix(in srgb, #2b2b2d 16%, transparent);
-  --shadow-lg: 0 12px 32px color-mix(in srgb, #2b2b2d 22%, transparent);
+  --shadow-sm: 0 1px 2px color-mix(in srgb, var(--color-neutral-900) 7%, transparent);
+  --shadow-md: 0 16px 32px -14px color-mix(in srgb, var(--color-neutral-900) 22%, transparent);
+  --shadow-lg: 0 28px 56px -18px color-mix(in srgb, var(--color-neutral-900) 26%, transparent);
+  --shadow-accent: 0 18px 36px -14px color-mix(in srgb, var(--color-accent-500) 38%, transparent);
 
-  /* Page-level extras from the export. */
-  --om-field: #1d2d3d;
-  --om-ink-rgb: 89, 128, 166;
+  /* Page-level extra used by the Contact panel. */
+  --om-field: var(--color-neutral-900);
 }
 
 /* ---- Dark theme --------------------------------------------------------- */
 [data-theme="dark"] {
-  --color-bg: #17191a;
-  --color-surface: #212425;
-  --color-text: #eceded;
-  --color-divider: color-mix(in srgb, #eceded 20%, transparent);
-  --color-neutral-100: #2b2e2f;
-  --color-neutral-800: #dcdcde;
-  --color-accent-100: #24313d;
-  --color-accent-800: #b5d9fd;
-  --color-accent-700: #9cc6f0;
-  --color-accent-900: #d8e8f8;
-  --color-accent-200: #2b3a49;
-  --color-accent-300: #35485a;
-  --color-accent-2-100: #24313d;
-  --color-accent-2-800: #b5d9fd;
-  --color-accent-2-700: #9cc6f0;
-  --color-accent-2-900: #d8e8f8;
-  --color-accent-2-200: #2b3a49;
-  --color-accent-2-300: #35485a;
-  --om-hatch: color-mix(in srgb, #f2f2f3 14%, transparent);
-  --om-field: #1d2d3d;
-  --om-ink-rgb: 156, 198, 240;
+  --color-bg: var(--color-neutral-950);
+  --color-surface: var(--color-neutral-900);
+  --color-text: var(--color-neutral-50);
+  --color-text-muted: color-mix(in srgb, var(--color-neutral-50) 62%, transparent);
+  --color-divider: color-mix(in srgb, var(--color-neutral-50) 14%, transparent);
+  --color-border-strong: color-mix(in srgb, var(--color-neutral-50) 28%, transparent);
+  --color-accent: var(--color-accent-400);
+  --color-accent-text: var(--color-accent-300);
+  --color-accent-soft: color-mix(in srgb, var(--color-accent-500) 20%, transparent);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 16px 32px -14px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 28px 56px -18px rgba(0, 0, 0, 0.6);
+  --shadow-accent: 0 18px 36px -14px color-mix(in srgb, var(--color-accent-400) 32%, transparent);
+
+  --om-field: #060708;
   color-scheme: dark;
 }
 
@@ -122,11 +119,11 @@ body {
 body {
   color: var(--color-text);
   font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.55;
+  font-size: 16px;
+  line-height: 1.6;
   font-weight: 400;
-  /* Guard against sideways scroll from wide mono labels / the ticker on
-     narrow screens, without constraining the layout itself. */
+  /* Guard against sideways scroll from the ticker / wide labels on narrow
+     screens, without constraining the layout itself. */
   overflow-x: clip;
 }
 
@@ -138,34 +135,40 @@ h5,
 h6 {
   font-family: var(--font-heading);
   font-weight: var(--font-heading-weight);
-  line-height: 1.12;
-  letter-spacing: -0.015em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   margin: 0 0 var(--space-2);
+  text-wrap: balance;
 }
-h1 { font-size: 42px; }
+h1 { font-size: 44px; }
 h2 { font-size: 32px; }
-h3 { font-size: 25px; }
-h4 { font-size: 20px; }
+h3 { font-size: 24px; }
+h4 { font-size: 19px; }
 h5 { font-size: 16px; }
 h6 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
 
-p { margin: 0 0 var(--space-3); }
+p { margin: 0 0 var(--space-3); text-wrap: pretty; }
 
 /* Link colours — but never for links styled as buttons (.btn sets its own). */
 a:not(.btn) {
-  color: var(--color-accent-700);
+  color: var(--color-accent-text);
   text-underline-offset: 3px;
 }
 a:not(.btn):hover { color: var(--color-accent); }
 
-[data-theme="dark"] a:not(.btn),
-[data-theme="dark"] .card-kicker { color: var(--color-accent-400); }
-[data-theme="dark"] a:not(.btn):hover { color: var(--color-accent-300); }
-
 img { display: block; max-width: 100%; }
 figure { margin: 0; }
 
-.text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
+.text-muted { color: var(--color-text-muted); }
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent-text);
+  margin-bottom: var(--space-2);
+}
 
 :focus { outline: none; }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
@@ -176,21 +179,20 @@ section[id] { scroll-margin-top: 88px; }
   section[id] { scroll-margin-top: 120px; }
 }
 
-/* ---- Blueprint frame + corner registration marks --------------------- */
+/* ---- Blueprint frame + corner registration marks -----------------------
+   Retained for the admin area (components/admin/**), which still renders
+   <Corners /> and the .blueprint class. The redesigned public site no
+   longer uses this device. */
 .blueprint {
   position: relative;
   border: 1px solid var(--color-divider);
-  border-radius: 0;
+  border-radius: var(--radius-md);
 }
-.blueprint.halftone,
-.blueprint.plate,
-.blueprint.duotone { overflow: visible; }
-
 .blueprint > .corner {
   position: absolute;
   width: 11px;
   height: 11px;
-  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  color: color-mix(in srgb, var(--color-text) 45%, transparent);
 }
 .blueprint > .corner::before,
 .blueprint > .corner::after {
@@ -205,22 +207,83 @@ section[id] { scroll-margin-top: 88px; }
 .blueprint > .corner.bl { bottom: -6px; left: -6px; }
 .blueprint > .corner.br { bottom: -6px; right: -6px; }
 
-.duotone { position: relative; overflow: hidden; }
-.duotone::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: var(--color-accent);
-  mix-blend-mode: color;
+/* ---- Contact ------------------------------------------------------------- */
+.contact-row {
+  transition: background-color 160ms ease;
+}
+.contact-row:hover,
+.contact-row:focus-visible {
+  background: color-mix(in srgb, #f5f6f7 10%, transparent);
 }
 
-[data-theme="dark"] [data-hatch] {
-  background: repeating-linear-gradient(
-    135deg,
-    var(--om-hatch) 0 6px,
-    transparent 6px 13px
-  ) !important;
+/* ---- Hero -------------------------------------------------------------- */
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 40px 56px;
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-grid > :last-child {
+    order: -1;
+    max-width: 220px !important;
+  }
+}
+
+/* ---- Bento-style grids (Skills) ----------------------------------------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 760px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .skills-grid [data-span="2"] {
+    grid-column: auto !important;
+  }
+}
+
+.featured-project {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  overflow: hidden;
+}
+@media (max-width: 760px) {
+  .featured-project {
+    grid-template-columns: 1fr;
+  }
+  .featured-project > :first-child {
+    aspect-ratio: 16 / 10;
+    border-right: none !important;
+    border-bottom: 1px solid var(--color-divider);
+  }
+}
+
+/* ---- Cards (public site) ------------------------------------------------ */
+.card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  transition: transform 260ms cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 260ms ease, border-color 260ms ease;
+}
+[data-lift] {
+  transition: transform 260ms cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 260ms ease, border-color 260ms ease;
+}
+[data-lift]:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-divider));
+  box-shadow: var(--shadow-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-lift]:hover { transform: none; }
 }
 
 /* ---- Buttons -------------------------------------------------------------- */
@@ -228,68 +291,66 @@ section[id] { scroll-margin-top: 88px; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
+  touch-action: manipulation;
   text-decoration: none;
+  white-space: nowrap;
   font-family: var(--font-heading);
   font-weight: var(--font-heading-weight);
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.2;
   color: var(--color-text);
   background: transparent;
   border: 1px solid var(--color-divider);
-  padding: var(--space-2) calc(var(--space-3) * 1.2);
-  border-radius: 0;
+  padding: 11px 20px;
+  border-radius: var(--radius-pill);
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 }
 .btn svg { display: block; }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
-.btn-primary { background: var(--color-accent); color: var(--color-bg); border-color: var(--color-accent); }
-.btn-primary:hover { background: var(--color-accent-700); border-color: var(--color-accent-700); }
-.btn-primary:active { background: var(--color-accent-800); border-color: var(--color-accent-800); }
+.btn:active { transform: scale(0.98); }
+.btn-primary { background: var(--color-accent); color: #ffffff; border-color: var(--color-accent); box-shadow: var(--shadow-accent); }
+.btn-primary:hover { background: var(--color-accent-600); border-color: var(--color-accent-600); }
+.btn-primary:active { background: var(--color-accent-700); border-color: var(--color-accent-700); }
 .btn-secondary { border-color: var(--color-divider); }
-.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
-.btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
-.btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); border-color: transparent; }
-.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
-.btn-ghost:active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); }
-.btn-icon { width: 36px; height: 36px; padding: 0; }
+.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 6%, transparent); border-color: var(--color-border-strong); }
+.btn-secondary:active { background: color-mix(in srgb, var(--color-text) 12%, transparent); }
+.btn-ghost { color: var(--color-accent-text); padding-inline: var(--space-3); border-color: transparent; }
+.btn-ghost:hover { background: var(--color-accent-soft); }
+.btn-ghost:active { background: color-mix(in srgb, var(--color-accent) 22%, transparent); }
+.btn-icon { width: 38px; height: 38px; padding: 0; border-radius: var(--radius-pill); }
 .btn-block { width: 100%; margin-top: var(--space-2); }
 
-/* Theme-toggle glyph: picked from the active theme so it is correct in the
+/* Theme-toggle icon swap, driven purely by CSS so it's correct in the
    server-rendered HTML with no JavaScript. */
-.theme-toggle-glyph::before { content: "\263E"; } /* ☾ */
-[data-theme="dark"] .theme-toggle-glyph::before { content: "\2600"; } /* ☀ */
+.theme-toggle-glyph .sun { display: none; }
+.theme-toggle-glyph .moon { display: block; }
+[data-theme="dark"] .theme-toggle-glyph .sun { display: block; }
+[data-theme="dark"] .theme-toggle-glyph .moon { display: none; }
 
-[data-theme="dark"] .btn-primary {
-  background: var(--color-accent-800);
-  border-color: var(--color-accent-800);
-  color: #17191a;
-}
-[data-theme="dark"] .btn-primary:hover {
-  background: var(--color-accent-700);
-  border-color: var(--color-accent-700);
-}
+[data-theme="dark"] .btn-primary { color: var(--color-neutral-950); }
 
 /* ---- Forms ----------------------------------------------------------- */
 .field > label {
   display: block;
   font-size: 12px;
   margin-bottom: 5px;
-  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+  color: var(--color-text-muted);
 }
 .input {
   width: 100%;
-  min-height: 36px;
-  padding: 6px 10px;
+  min-height: 40px;
+  padding: 8px 12px;
   font: inherit;
   font-size: 14px;
   color: var(--color-text);
   caret-color: var(--color-accent);
   background: var(--color-surface);
   border: 1px solid var(--color-divider);
-  border-radius: 0;
+  border-radius: var(--radius-md);
 }
-.input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
+.input:hover { border-color: var(--color-border-strong); }
 .input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
 textarea.input { min-height: 90px; resize: vertical; }
 
@@ -300,27 +361,27 @@ textarea.input { min-height: 90px; resize: vertical; }
   font-family: var(--font-body);
   font-size: 16px;
   padding: 11px 12px;
-  background: transparent;
+  background: var(--color-surface);
   color: var(--color-text);
   border: 1px solid var(--color-divider);
-  border-radius: 0;
+  border-radius: var(--radius-md);
 }
 .om-in:focus {
   outline: 2px solid var(--color-accent);
   outline-offset: -1px;
   border-color: var(--color-accent);
 }
-.om-in::placeholder { color: color-mix(in srgb, var(--color-text) 38%, transparent); }
+.om-in::placeholder { color: color-mix(in srgb, var(--color-text) 40%, transparent); }
 textarea.om-in { line-height: 1.55; resize: vertical; }
 
 .field-label {
   display: block;
   font-family: var(--font-heading);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   font-size: 12px;
   margin-bottom: 7px;
-  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+  color: var(--color-text-muted);
 }
 
 @keyframes om-spin {
@@ -356,50 +417,35 @@ textarea.om-in { line-height: 1.55; resize: vertical; }
   display: inline-flex;
   align-items: center;
   font-size: 13px;
-  letter-spacing: 0.02em;
-  padding: 3px 10px;
-  border-radius: 0;
+  letter-spacing: 0.01em;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
 }
-.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
-.tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
-.tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
-.tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
+.tag-accent { background: var(--color-accent-soft); color: var(--color-accent-text); }
+.tag-accent-2 { background: var(--color-accent-soft); color: var(--color-accent-text); }
+.tag-neutral { background: color-mix(in srgb, var(--color-text) 7%, transparent); color: var(--color-text-muted); }
+.tag-outline { border: 1px solid var(--color-divider); color: var(--color-text-muted); }
 
 /* ---- Motion --------------------------------------------------------------- */
-[data-lift] {
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-}
-[data-lift]:hover {
-  transform: translateY(-4px);
-  border-color: var(--color-accent);
-  box-shadow: var(--shadow-md);
-}
-[data-rise] {
-  animation: om-rise 620ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
-}
-
-@keyframes om-float {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(4vw, 6vh, 0) scale(1.12); }
-}
-@keyframes om-marquee {
+@keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-@keyframes om-rise {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; }
-}
-@keyframes om-pulse {
+@keyframes pulse-dot {
   0%, 100% { opacity: 0.35; }
   50% { opacity: 1; }
 }
 
+[data-om-anim="dot"] { animation: pulse-dot 2.4s ease-in-out infinite; }
+[data-om-anim="ticker"] { animation: marquee 42s linear infinite; }
+[data-om-anim="ticker"]:hover,
+[data-om-anim="ticker"]:focus-within {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  [data-om-anim],
-  [data-rise],
-  [data-lift] {
+  [data-om-anim] {
     animation: none !important;
     transition: none !important;
   }

@@ -1,79 +1,90 @@
 import { experience } from "@/lib/content";
-import { SectionShell } from "./SectionShell";
-
-const mono = "ui-monospace, monospace";
+import { Reveal } from "./Reveal";
+import { Section } from "./Section";
 
 export function Experience() {
   return (
-    <SectionShell
-      id="experience"
-      heading="04 — Experience"
-      contentStyle={{ display: "flex", flexDirection: "column" }}
-    >
-      {experience.map((role, i) => (
+    <Section id="experience">
+      <Reveal>
+        <h2 style={{ marginBottom: 28 }}>Experience</h2>
+      </Reveal>
+
+      <div style={{ position: "relative" }}>
         <div
-          key={i}
+          aria-hidden="true"
           style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "6px 20px",
-            padding: "18px 12px",
-            margin: "0 -12px",
-            borderTop: "1px solid var(--color-divider)",
+            position: "absolute",
+            left: 5,
+            top: 8,
+            bottom: 8,
+            width: 1,
+            background: "var(--color-divider)",
           }}
-        >
-          <div style={{ flex: "0 1 150px", paddingTop: 4 }}>
+        />
+        {experience.map((role, i) => (
+          <Reveal key={i} delay={i * 0.06}>
             <div
               style={{
-                fontFamily: mono,
-                fontSize: 13,
-                letterSpacing: "0.06em",
-                opacity: 0.8,
+                position: "relative",
+                paddingLeft: 32,
+                paddingBottom: i === experience.length - 1 ? 0 : 32,
               }}
             >
-              {role.dates}
+              <span
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  top: 7,
+                  width: 11,
+                  height: 11,
+                  borderRadius: "50%",
+                  background: "var(--color-accent)",
+                  border: "2px solid var(--color-bg)",
+                  boxShadow: "0 0 0 1px var(--color-divider)",
+                }}
+              />
+              <div
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 13,
+                  letterSpacing: "0.04em",
+                  color: "var(--color-accent-text)",
+                  marginBottom: 6,
+                }}
+              >
+                {role.dates} · {role.duration}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  flexWrap: "wrap",
+                  marginBottom: 4,
+                }}
+              >
+                <h3 style={{ margin: 0, fontSize: 22 }}>{role.role}</h3>
+                <span className="tag tag-accent">{role.kind}</span>
+              </div>
+              <div style={{ fontSize: 16, color: "var(--color-text-muted)", marginBottom: 8 }}>
+                {role.org}
+              </div>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: 16,
+                  lineHeight: 1.6,
+                  color: "var(--color-text-muted)",
+                  maxWidth: "62ch",
+                }}
+              >
+                {role.desc}
+              </p>
             </div>
-            <div
-              style={{
-                fontFamily: mono,
-                fontSize: 12,
-                letterSpacing: "0.06em",
-                color: "var(--color-accent-700)",
-                marginTop: 3,
-              }}
-            >
-              {role.duration}
-            </div>
-          </div>
-          <div style={{ flex: "1 1 min(100%, 320px)", minWidth: 0 }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                flexWrap: "wrap",
-              }}
-            >
-              <h4 style={{ margin: 0, fontSize: 22 }}>{role.role}</h4>
-              <span className="tag tag-accent">{role.kind}</span>
-            </div>
-            <div style={{ fontSize: 16, opacity: 0.75, marginTop: 2 }}>
-              {role.org}
-            </div>
-            <p
-              style={{
-                margin: "8px 0 0",
-                fontSize: 16,
-                lineHeight: 1.55,
-                opacity: 0.85,
-                maxWidth: "62ch",
-              }}
-            >
-              {role.desc}
-            </p>
-          </div>
-        </div>
-      ))}
-    </SectionShell>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
   );
 }

@@ -1,7 +1,6 @@
 import type { Project } from "@/lib/types";
-import { Corners } from "./Corners";
 
-const mono = "ui-monospace, monospace";
+const mono = "var(--font-mono)";
 
 function yearOf(dateCompleted: string | null): string {
   if (!dateCompleted) return "—";
@@ -14,13 +13,12 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <article
-      className="blueprint"
+      className="card"
       data-lift=""
-      data-rise=""
       style={{
         display: "flex",
         flexDirection: "column",
-        border: "1px solid var(--color-divider)",
+        overflow: "hidden",
       }}
     >
       <div
@@ -28,27 +26,21 @@ export function ProjectCard({ project }: { project: Project }) {
           position: "relative",
           overflow: "hidden",
           aspectRatio: "16 / 10",
-          background: "var(--color-accent-200)",
+          background: "var(--color-accent-soft)",
           display: "flex",
-          alignItems: "flex-end",
-          padding: 10,
+          alignItems: "center",
+          justifyContent: "center",
           borderBottom: "1px solid var(--color-divider)",
         }}
       >
-        <div
-          data-hatch=""
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "repeating-linear-gradient(135deg, color-mix(in srgb, #1d1f20 11%, transparent) 0 6px, transparent 6px 13px)",
-          }}
-        />
         {project.imageUrl ? (
           // eslint-disable-next-line @next/next/no-img-element -- swapped for next/image once the Supabase host is configured (build-plan step 3/4)
           <img
             src={project.imageUrl}
             alt={`${project.title} screenshot`}
+            width={1600}
+            height={1000}
+            loading="lazy"
             style={{
               position: "absolute",
               inset: 0,
@@ -60,20 +52,19 @@ export function ProjectCard({ project }: { project: Project }) {
         ) : (
           <span
             style={{
-              position: "relative",
               fontFamily: mono,
-              fontSize: 10,
-              color: "var(--color-accent-900)",
+              fontSize: 11,
+              color: "var(--color-accent-text)",
             }}
           >
-            screenshot — 1600×1000
+            screenshot · 1600×1000
           </span>
         )}
       </div>
 
       <div
         style={{
-          padding: 16,
+          padding: 20,
           display: "flex",
           flexDirection: "column",
           gap: 10,
@@ -81,18 +72,18 @@ export function ProjectCard({ project }: { project: Project }) {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span className="tag tag-outline">{project.badge ?? "Project"}</span>
-          <span style={{ fontFamily: mono, fontSize: 10, opacity: 0.55 }}>
+          <span className="tag tag-accent">{project.badge ?? "Project"}</span>
+          <span style={{ fontFamily: mono, fontSize: 11, color: "var(--color-text-muted)" }}>
             {yearOf(project.dateCompleted)}
           </span>
         </div>
-        <h3 style={{ margin: 0, fontSize: 25 }}>{project.title}</h3>
+        <h3 style={{ margin: 0, fontSize: 22 }}>{project.title}</h3>
         <p
           style={{
             margin: 0,
-            fontSize: 16,
+            fontSize: 15,
             lineHeight: 1.55,
-            opacity: 0.8,
+            color: "var(--color-text-muted)",
             flex: 1,
           }}
         >
@@ -112,8 +103,8 @@ export function ProjectCard({ project }: { project: Project }) {
               display: "flex",
               flexWrap: "wrap",
               alignItems: "center",
-              gap: 8,
-              paddingTop: 8,
+              gap: 4,
+              paddingTop: 10,
               borderTop: "1px solid var(--color-divider)",
               marginTop: 4,
             }}
@@ -124,7 +115,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-ghost"
-                style={{ fontSize: 15 }}
+                style={{ fontSize: 14 }}
               >
                 GitHub ↗
               </a>
@@ -135,7 +126,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-ghost"
-                style={{ fontSize: 15 }}
+                style={{ fontSize: 14 }}
               >
                 Demo ↗
               </a>
@@ -143,7 +134,6 @@ export function ProjectCard({ project }: { project: Project }) {
           </div>
         )}
       </div>
-      <Corners />
     </article>
   );
 }
