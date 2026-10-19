@@ -1,0 +1,19 @@
+name: Keep Supabase alive
+
+# Independent of Vercel's own Cron Jobs (vercel.json) — pings the same
+# /api/health route on a GitHub Actions schedule instead, since Vercel's
+# scheduler was confirmed not to be firing for this project.
+on:
+  schedule:
+    - cron: "13 2 * * *" # 02:13 UTC daily
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping /api/health
+        run: |
+          curl -fsS \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            https://e-portfolio-three-drab.vercel.app/api/health
